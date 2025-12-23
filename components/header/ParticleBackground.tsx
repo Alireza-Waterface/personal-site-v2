@@ -119,6 +119,9 @@ export default function ParticleBackground() {
    }, [isDark]); // re-run if dark/light mode changes
 
    return (
-      <canvas ref={canvasRef} className="particle-bg absolute w-full h-full" />
+      <canvas
+         ref={canvasRef}
+         className="particle-bg absolute w-full h-full z-0"
+      />
    );
 }

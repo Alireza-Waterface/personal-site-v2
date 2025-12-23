@@ -4,12 +4,12 @@ import { headers } from "next/headers";
 
 import logo from "@/app/icon.png";
 
-import { TextAlignJustify } from "lucide-react";
-
 import { getDictionary, Locale } from "@/lib/getDictionary";
 
 import LanguageSwitcher from "./LangSwitch";
 import ThemeSwitcher from "./ThemeSwitch";
+
+import { IoMenu } from "react-icons/io5";
 
 export default async function Navbar({ lang }: { lang: Locale }) {
    const dict = await getDictionary(lang);
@@ -29,13 +29,13 @@ export default async function Navbar({ lang }: { lang: Locale }) {
    };
 
    return (
-      <div className="p-2 bg-gray-200 dark:bg-gray-800 relative flex items-center justify-between gap-4">
+      <div className="p-2 bg-gray-200 dark:bg-gray-800 relative flex items-center justify-between gap-4 z-10">
          <div className="flex items-center gap-8">
             <label
                htmlFor="nav-toggle"
                className="cursor-pointer text-xl block sm:hidden"
             >
-               <TextAlignJustify />
+               <IoMenu />
             </label>
 
             <Image

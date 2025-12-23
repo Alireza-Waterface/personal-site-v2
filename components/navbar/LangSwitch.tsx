@@ -1,8 +1,9 @@
 "use client";
 
-import { Languages } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { Activity, useState } from "react";
+
+import { IoLanguage } from "react-icons/io5";
 
 export default function LanguageSwitcher() {
    const pathName = usePathname();
@@ -35,7 +36,7 @@ export default function LanguageSwitcher() {
             onClick={() => setIsSwitcherVisible((prev) => !prev)}
             title={isEnglish ? "Switch language" : "تغییر زبان"}
          >
-            <Languages />
+            <IoLanguage size={25} />
          </button>
 
          <Activity mode={isSwitcherVisible ? "visible" : "hidden"}>

@@ -1,8 +1,10 @@
 "use client";
 
 import { Locale } from "@/lib/getDictionary";
-import { MonitorCog, Moon, Sun } from "lucide-react";
 import { Activity, useEffect, useLayoutEffect, useState } from "react";
+
+import { FaMoon, FaSun } from "react-icons/fa6";
+import { LuMonitorCog } from "react-icons/lu";
 
 type Theme = "dark" | "light" | "system";
 
@@ -59,9 +61,9 @@ export default function ThemeSwitcher({ lang }: { lang: Locale }) {
             onClick={() => setIsSwitcherVisible((prev) => !prev)}
             title="Switch theme | تغییر تم"
          >
-            {theme === "dark" && <Moon />}
-            {theme === "light" && <Sun />}
-            {theme === "system" && <MonitorCog />}
+            {theme === "dark" && <FaMoon size={25} />}
+            {theme === "light" && <FaSun size={25} />}
+            {theme === "system" && <LuMonitorCog size={25} />}
          </button>
 
          <Activity mode={isSwitcherVisible ? "visible" : "hidden"}>
@@ -74,21 +76,21 @@ export default function ThemeSwitcher({ lang }: { lang: Locale }) {
                   name="dark"
                   className="flex items-center justify-between gap-2 hover:bg-gray-200 dark:hover:bg-gray-800 p-2 transition-all rounded-md cursor-pointer select-none"
                >
-                  <Moon />
+                  <FaMoon size={20} />
                   <span>{lang === "en" ? "Dark" : "تاریک"}</span>
                </button>
                <button
                   name="light"
                   className="flex items-center justify-between gap-2 hover:bg-gray-200 dark:hover:bg-gray-800 p-2 transition-all rounded-md cursor-pointer select-none"
                >
-                  <Sun />
+                  <FaSun size={20} />
                   <span>{lang === "en" ? "Light" : "روشن"}</span>
                </button>
                <button
                   name="system"
                   className="flex items-center justify-between gap-2 hover:bg-gray-200 dark:hover:bg-gray-800 p-2 transition-all rounded-md cursor-pointer select-none"
                >
-                  <MonitorCog />
+                  <LuMonitorCog size={20} />
                   <span>{lang === "en" ? "System" : "سیستم"}</span>
                </button>
             </div>
