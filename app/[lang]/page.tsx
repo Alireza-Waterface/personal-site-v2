@@ -1,5 +1,7 @@
 import { Locale, getDictionary } from "@/lib/getDictionary";
 
+import Header from "@/components/header/Header";
+
 export default async function HomePage({
    params,
 }: {
@@ -10,7 +12,9 @@ export default async function HomePage({
 
    return (
       <>
-         <main className="text-2xl">{dict.homePage.header.greeting}</main>
+         <main className="text-2xl">
+            <Header lang={lang} />
+         </main>
       </>
    );
 }
