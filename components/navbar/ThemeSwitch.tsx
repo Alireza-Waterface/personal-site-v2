@@ -2,17 +2,12 @@
 
 import { Locale } from "@/lib/getDictionary";
 import { MonitorCog, Moon, Sun } from "lucide-react";
-import { Activity, useEffect, useState } from "react";
+import { Activity, useEffect, useLayoutEffect, useState } from "react";
 
 type Theme = "dark" | "light" | "system";
 
 export default function ThemeSwitcher({ lang }: { lang: Locale }) {
-   const [theme, setTheme] = useState<Theme>(() => {
-      const stored = localStorage.getItem("theme")!;
-      if (stored === "dark" || stored === "light") return stored;
-
-      return "system";
-   });
+   const [theme, setTheme] = useState<Theme>("system");
    const [isSwitcherVisible, setIsSwitcherVisible] = useState<boolean>(false);
 
    function applyTheme(theme: "dark" | "light") {
@@ -34,6 +29,15 @@ export default function ThemeSwitcher({ lang }: { lang: Locale }) {
       ).matches;
       applyTheme(prefersDark ? "dark" : "light");
    }, [theme]);
+
+   useLayoutEffect(() => {
+      const stored = localStorage.getItem("theme");
+      if (stored === "dark" || stored === "light") {
+         applyTheme(stored);
+         // eslint-disable-next-line react-hooks/set-state-in-effect
+         setTheme(stored);
+      }
+   }, []);
 
    function handleThemeChange(e: React.MouseEvent<HTMLDivElement>) {
       e.stopPropagation();
