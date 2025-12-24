@@ -1,7 +1,9 @@
 "use client";
 
 import { Locale } from "@/lib/getDictionary";
-import { Activity, useEffect, useLayoutEffect, useState } from "react";
+import { Activity, useEffect, useLayoutEffect, useRef, useState } from "react";
+
+import { useOutsideClick } from "@/lib/useOutsideClick";
 
 import { FaMoon, FaSun } from "react-icons/fa6";
 import { LuMonitorCog } from "react-icons/lu";
@@ -41,6 +43,12 @@ export default function ThemeSwitcher({ lang }: { lang: Locale }) {
       }
    }, []);
 
+   const switchRef = useRef<HTMLDivElement>(null);
+
+   useOutsideClick(switchRef, () => {
+      setIsSwitcherVisible(false);
+   });
+
    function handleThemeChange(e: React.MouseEvent<HTMLDivElement>) {
       e.stopPropagation();
 
@@ -68,6 +76,7 @@ export default function ThemeSwitcher({ lang }: { lang: Locale }) {
 
          <Activity mode={isSwitcherVisible ? "visible" : "hidden"}>
             <div
+               ref={switchRef}
                className="absolute top-[50px] end-0 bg-gray-300 p-2 rounded-sm dark:bg-gray-700 flex flex-col gap-2 shadow-md"
                onClick={handleThemeChange}
                onMouseLeave={() => setIsSwitcherVisible((prev) => !prev)}

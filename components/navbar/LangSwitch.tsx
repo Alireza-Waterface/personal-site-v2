@@ -1,7 +1,8 @@
 "use client";
 
+import { useOutsideClick } from "@/lib/useOutsideClick";
 import { usePathname, useRouter } from "next/navigation";
-import { Activity, useState } from "react";
+import { Activity, useRef, useState } from "react";
 
 import { IoLanguage } from "react-icons/io5";
 
@@ -9,6 +10,12 @@ export default function LanguageSwitcher() {
    const pathName = usePathname();
    const router = useRouter();
    const [isSwitcherVisible, setIsSwitcherVisible] = useState<boolean>(false);
+
+   const switchRef = useRef<HTMLDivElement>(null);
+
+   useOutsideClick(switchRef, () => {
+      setIsSwitcherVisible(false);
+   });
 
    const isEnglish = pathName.startsWith("/en");
 
@@ -41,6 +48,7 @@ export default function LanguageSwitcher() {
 
          <Activity mode={isSwitcherVisible ? "visible" : "hidden"}>
             <div
+               ref={switchRef}
                className="absolute top-[50px] end-0 bg-gray-300 p-2 rounded-sm dark:bg-gray-700 flex flex-col gap-2 shadow-md"
                onClick={switchLanguage}
                onMouseLeave={() => setIsSwitcherVisible((prev) => !prev)}

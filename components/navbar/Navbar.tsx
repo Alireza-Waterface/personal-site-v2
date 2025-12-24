@@ -29,13 +29,13 @@ export default async function Navbar({ lang }: { lang: Locale }) {
    };
 
    return (
-      <div className="p-2 bg-gray-200 dark:bg-gray-800 relative flex items-center justify-between gap-4 z-10">
+      <div className="p-2 bg-gray-200 dark:bg-gray-800 relative flex items-center justify-between gap-4 z-20">
          <div className="flex items-center gap-8">
             <label
                htmlFor="nav-toggle"
                className="cursor-pointer text-xl block sm:hidden"
             >
-               <IoMenu />
+               <IoMenu size={30} />
             </label>
 
             <Image
@@ -47,7 +47,7 @@ export default async function Navbar({ lang }: { lang: Locale }) {
                className="rounded-full select-none"
             />
 
-            <nav className="hidden sm:flex items-center gap-4 text-xl">
+            <nav className="hidden sm:flex items-center gap-2 text-sm md:text-lg lg:gap-4">
                <Link
                   className={`${baseStyle} ${
                      isActive("/") ? activeStyle : inactiveStyle
@@ -105,40 +105,40 @@ export default async function Navbar({ lang }: { lang: Locale }) {
             className="hidden peer"
          />
 
-         <div className="absolute left-0 bg-gray-200 w-full transition-all -top-40 scale-50 opacity-0 pointer-events-none peer-checked:top-[90px] peer-checked:scale-100 peer-checked:opacity-100 peer-checked:pointer-events-auto">
-            <nav className="flex flex-col items-center gap-4 text-xl">
+         <div className="absolute sm:hidden left-0 bg-gray-200/50 dark:bg-gray-700/50 backdrop-blur-sm w-full transition-all -top-40 scale-50 opacity-0 pointer-events-none peer-checked:top-[86px] peer-checked:scale-100 peer-checked:opacity-100 peer-checked:pointer-events-auto">
+            <nav className="flex flex-col items-center gap-2 text-xl py-2">
                <Link
-                  className="p-2 rounded-sm transition-all hover:bg-gray-300 dark:hover:bg-gray-800 w-full max-w-xl text-center"
+                  className="p-2 active:translate-y-0.5 text-sm sm:text-lg rounded-sm transition-all hover:bg-gray-300 dark:hover:bg-gray-800 w-full max-w-sm text-center"
                   href={"/"}
                >
                   {dict.nav.home}
                </Link>
                <Link
-                  className="p-2 rounded-sm transition-all hover:bg-gray-300 dark:hover:bg-gray-800 w-full max-w-xl text-center"
+                  className="p-2 active:translate-y-0.5 text-sm sm:text-lg rounded-sm transition-all hover:bg-gray-300 dark:hover:bg-gray-800 w-full max-w-sm text-center"
                   href={"/blogs"}
                >
                   {dict.nav.blog}
                </Link>
                <Link
-                  className="p-2 rounded-sm transition-all hover:bg-gray-300 dark:hover:bg-gray-800 w-full max-w-xl text-center"
+                  className="p-2 active:translate-y-0.5 text-sm sm:text-lg rounded-sm transition-all hover:bg-gray-300 dark:hover:bg-gray-800 w-full max-w-sm text-center"
                   href={"#skills"}
                >
                   {dict.nav.skills}
                </Link>
                <Link
-                  className="p-2 rounded-sm transition-all hover:bg-gray-300 dark:hover:bg-gray-800 w-full max-w-xl text-center"
+                  className="p-2 active:translate-y-0.5 text-sm sm:text-lg rounded-sm transition-all hover:bg-gray-300 dark:hover:bg-gray-800 w-full max-w-sm text-center"
                   href={"/projects"}
                >
                   {dict.nav.projects}
                </Link>
                <Link
-                  className="p-2 rounded-sm transition-all hover:bg-gray-300 dark:hover:bg-gray-800 w-full max-w-xl text-center"
+                  className="p-2 active:translate-y-0.5 text-sm sm:text-lg rounded-sm transition-all hover:bg-gray-300 dark:hover:bg-gray-800 w-full max-w-sm text-center"
                   href={"#resume"}
                >
                   {dict.nav.resume}
                </Link>
                <Link
-                  className="p-2 rounded-sm transition-all hover:bg-gray-300 dark:hover:bg-gray-800 w-full max-w-xl text-center"
+                  className="p-2 active:translate-y-0.5 text-sm sm:text-lg rounded-sm transition-all hover:bg-gray-300 dark:hover:bg-gray-800 w-full max-w-sm text-center"
                   href={"#contact"}
                >
                   {dict.nav.contact}
