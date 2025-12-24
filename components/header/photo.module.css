@@ -4,15 +4,11 @@
    inherits: false;
 }
 
-:root {
-   --card-height: 50lvh;
-   /* --card-width: calc(var(--card-height) / 1.5); */
-}
-
 .card {
    background: #191c29;
-   height: var(--card-height);
-   min-height: 300px;
+   min-height: 250px;
+   height: 90vw;
+   max-height: 450px;
    aspect-ratio: 1 / 1;
    padding: 3px;
    position: relative;
@@ -52,7 +48,7 @@
 .card::after {
    position: absolute;
    content: "";
-   top: calc(var(--card-height) / 6);
+   top: calc(60vh / 6);
    left: 0;
    right: 0;
    z-index: -1;
@@ -60,7 +56,7 @@
    width: 100%;
    margin: 0 auto;
    transform: scale(0.8);
-   filter: blur(calc(var(--card-height) / 6));
+   filter: blur(calc(60vh / 6));
    background-image: linear-gradient(
       var(--rotate),
       #5ddcff,
