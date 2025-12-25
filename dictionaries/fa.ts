@@ -71,10 +71,11 @@ export const fa = {
                high: "تسلط بالا",
                medium: "تسلط مناسب",
                low: "تسلط پایین",
-               Preliminary: "مقدماتی",
+               preliminary: "مقدماتی",
             },
          },
-         Education: {
+         education: {
+            title: "تحصیلات",
             highSchool: {
                title: "دبیرستان",
                desc: "دوره متوسطه دوم در رشته علوم تجربی در خرداد ماه سال 1398 به پایان رساندم",

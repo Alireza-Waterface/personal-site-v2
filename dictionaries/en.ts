@@ -1,3 +1,5 @@
+import { title } from "node:process";
+
 export const en = {
    meta: {
       title: "Alireza Waterface | Frontend Developer",
@@ -71,10 +73,11 @@ export const en = {
                high: "High proficiency",
                medium: "Medium proficiency",
                low: "Low proficiency",
-               Preliminary: "Preliminary mastery",
+               preliminary: "Preliminary mastery",
             },
          },
-         Education: {
+         education: {
+            title: "Education",
             highSchool: {
                title: "High school",
                desc: "Completed high school in sciences in June 2019",
