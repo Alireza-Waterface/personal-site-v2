@@ -2,6 +2,7 @@ import { Locale, getDictionary } from "@/lib/getDictionary";
 
 import Header from "@/components/header/Header";
 import Capabilities from "@/components/capabilities/Capabilities";
+import Portfolio from "@/components/portfolio/Portfolio";
 
 export default async function HomePage({
    params,
@@ -16,6 +17,7 @@ export default async function HomePage({
          <main className="text-2xl">
             <Header lang={lang} />
             <Capabilities lang={lang} />
+            <Portfolio lang={lang} />
          </main>
       </>
    );

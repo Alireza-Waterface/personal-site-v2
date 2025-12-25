@@ -56,7 +56,7 @@ export const en = {
          },
       },
       samples: {
-         title: "Finished projects",
+         title: "Portfolio",
          desc: "Some already done projects",
          all: "View all",
       },
