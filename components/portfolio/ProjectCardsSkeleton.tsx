@@ -4,7 +4,7 @@ export default function ProjectCardsSkeleton(): ReactElement {
    const items = [1, 2, 3, 4];
 
    return (
-      <ul className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-stretch gap-2">
+      <ul className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-stretch gap-2 mt-4">
          {items.map((item) => (
             <li
                key={item}

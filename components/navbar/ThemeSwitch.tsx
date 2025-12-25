@@ -35,11 +35,13 @@ export default function ThemeSwitcher({ lang }: { lang: Locale }) {
    }, [theme]);
 
    useLayoutEffect(() => {
-      const stored = localStorage.getItem("theme");
-      if (stored === "dark" || stored === "light") {
-         applyTheme(stored);
-         // eslint-disable-next-line react-hooks/set-state-in-effect
-         setTheme(stored);
+      if (typeof window !== "undefined") {
+         const stored = localStorage.getItem("theme");
+         if (stored === "dark" || stored === "light") {
+            applyTheme(stored);
+            // eslint-disable-next-line react-hooks/set-state-in-effect
+            setTheme(stored);
+         }
       }
    }, []);
 

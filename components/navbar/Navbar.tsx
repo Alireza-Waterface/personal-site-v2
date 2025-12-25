@@ -52,7 +52,7 @@ export default async function Navbar({ lang }: { lang: Locale }) {
                   className={`${baseStyle} ${
                      isActive("/") ? activeStyle : inactiveStyle
                   }`}
-                  href={"/"}
+                  href={`/${lang}/`}
                >
                   {dict.nav.home}
                </Link>
@@ -60,13 +60,13 @@ export default async function Navbar({ lang }: { lang: Locale }) {
                   className={`${baseStyle} ${
                      isActive("/blogs") ? activeStyle : inactiveStyle
                   }`}
-                  href={"/blogs"}
+                  href={`/${lang}/blogs`}
                >
                   {dict.nav.blog}
                </Link>
                <Link
                   className={`${baseStyle} ${inactiveStyle}`}
-                  href={"#skills"}
+                  href={`/${lang}#capabilities`}
                >
                   {dict.nav.skills}
                </Link>
@@ -74,19 +74,19 @@ export default async function Navbar({ lang }: { lang: Locale }) {
                   className={`${baseStyle} ${
                      isActive("/projects") ? activeStyle : inactiveStyle
                   }`}
-                  href={"/projects"}
+                  href={`/${lang}/projects`}
                >
                   {dict.nav.projects}
                </Link>
                <Link
                   className={`${baseStyle} ${inactiveStyle}`}
-                  href={"#resume"}
+                  href={`/${lang}#resume`}
                >
                   {dict.nav.resume}
                </Link>
                <Link
                   className={`${baseStyle} ${inactiveStyle}`}
-                  href={"#contact"}
+                  href={`/${lang}#contact`}
                >
                   {dict.nav.contact}
                </Link>
@@ -109,37 +109,37 @@ export default async function Navbar({ lang }: { lang: Locale }) {
             <nav className="flex flex-col items-center gap-2 text-xl py-2">
                <Link
                   className="p-2 active:translate-y-0.5 text-sm sm:text-lg rounded-sm transition-all hover:bg-gray-300 dark:hover:bg-gray-800 w-full max-w-sm text-center"
-                  href={"/"}
+                  href={`/${lang}/`}
                >
                   {dict.nav.home}
                </Link>
                <Link
                   className="p-2 active:translate-y-0.5 text-sm sm:text-lg rounded-sm transition-all hover:bg-gray-300 dark:hover:bg-gray-800 w-full max-w-sm text-center"
-                  href={"/blogs"}
+                  href={`/${lang}/blogs`}
                >
                   {dict.nav.blog}
                </Link>
                <Link
                   className="p-2 active:translate-y-0.5 text-sm sm:text-lg rounded-sm transition-all hover:bg-gray-300 dark:hover:bg-gray-800 w-full max-w-sm text-center"
-                  href={"#skills"}
+                  href={`/${lang}#skills`}
                >
                   {dict.nav.skills}
                </Link>
                <Link
                   className="p-2 active:translate-y-0.5 text-sm sm:text-lg rounded-sm transition-all hover:bg-gray-300 dark:hover:bg-gray-800 w-full max-w-sm text-center"
-                  href={"/projects"}
+                  href={`/${lang}/projects`}
                >
                   {dict.nav.projects}
                </Link>
                <Link
                   className="p-2 active:translate-y-0.5 text-sm sm:text-lg rounded-sm transition-all hover:bg-gray-300 dark:hover:bg-gray-800 w-full max-w-sm text-center"
-                  href={"#resume"}
+                  href={`/${lang}#resume`}
                >
                   {dict.nav.resume}
                </Link>
                <Link
                   className="p-2 active:translate-y-0.5 text-sm sm:text-lg rounded-sm transition-all hover:bg-gray-300 dark:hover:bg-gray-800 w-full max-w-sm text-center"
-                  href={"#contact"}
+                  href={`/${lang}#contact`}
                >
                   {dict.nav.contact}
                </Link>

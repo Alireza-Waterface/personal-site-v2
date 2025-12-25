@@ -20,30 +20,30 @@ export default async function Grid({ lang }: { lang: Locale }) {
    const gridItems: Items[] = [
       {
          id: 1,
-         title: dict.homePage.skills.coOp,
+         title: dict.homePage.capabilities.coOp,
          className: "min-h-[50vh] lg:col-span-2 lg:row-span-2",
          img: "/b1.webp",
       },
       {
          id: 2,
-         title: dict.homePage.skills.ready,
+         title: dict.homePage.capabilities.ready,
       },
       {
          id: 3,
-         description: dict.homePage.skills.try.part1,
-         title: dict.homePage.skills.try.part2,
+         description: dict.homePage.capabilities.try.part1,
+         title: dict.homePage.capabilities.try.part2,
       },
       {
          id: 4,
-         title: dict.homePage.skills.pation,
+         title: dict.homePage.capabilities.pation,
          className: "lg:col-span-2",
          img: "/grid.webp",
          spareImg: "/b4.webp",
       },
       {
          id: 5,
-         title: dict.homePage.skills.contact.part1,
-         description: dict.homePage.skills.contact.part2,
+         title: dict.homePage.capabilities.contact.part1,
+         description: dict.homePage.capabilities.contact.part2,
          className: "lg:col-start-3 lg:row-start-3",
       },
    ];
@@ -53,7 +53,7 @@ export default async function Grid({ lang }: { lang: Locale }) {
          {gridItems.map((item) => (
             <div
                key={item.id}
-               className={`relative rounded-xl overflow-hidden bg-slate-950 transition-all text-gray-100 ${item.className}`}
+               className={`relative rounded-xl overflow-hidden bg-gray-950 transition-all text-gray-100 ${item.className}`}
             >
                {item.id === 1 && (
                   <div>

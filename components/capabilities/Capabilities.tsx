@@ -9,10 +9,12 @@ export default async function Capabilities({ lang }: { lang: Locale }) {
          id="capabilities"
          className="flex flex-col gap-2 items-center bg-gray-200 dark:bg-gray-800 py-2 px-4"
       >
-         <p className="text-lg text-red-600">{dict.homePage.skills.desc}</p>
+         <p className="text-lg text-red-600">
+            {dict.homePage.capabilities.desc}
+         </p>
 
          <h2 className="text-md sm:text-xl md:text-2xl lg:text-3xl font-bold">
-            {dict.homePage.skills.title}
+            {dict.homePage.capabilities.title}
          </h2>
 
          <Grid lang={lang} />

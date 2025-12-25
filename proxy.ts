@@ -18,11 +18,6 @@ function getLocale(request: NextRequest): string {
 export function proxy(request: NextRequest) {
    const pathname = request.nextUrl.pathname;
 
-   const pathnameIsMissingLocale = locales.every(
-      (locale) =>
-         !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
-   );
-
    if (
       pathname.startsWith("/_next") ||
       pathname.startsWith("/api") ||
@@ -31,9 +26,13 @@ export function proxy(request: NextRequest) {
       return;
    }
 
+   const pathnameIsMissingLocale = locales.every(
+      (locale) =>
+         !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+   );
+
    if (pathnameIsMissingLocale) {
       const locale = getLocale(request);
-
       return NextResponse.redirect(
          new URL(
             `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
@@ -41,6 +40,10 @@ export function proxy(request: NextRequest) {
          )
       );
    }
+
+   const response = NextResponse.next();
+   response.headers.set("x-pathname", pathname);
+   return response;
 }
 
 export const config = {

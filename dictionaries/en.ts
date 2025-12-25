@@ -4,7 +4,8 @@ export const en = {
       description:
          "Alireza Waterface | FrontEnd developer | Create modern and interactive websites using NextJS, React and JavaScript.",
       author: "Alireza Waterface",
-      keywords: "",
+      keywords:
+         "freelancer,web developer,front-end developer,frontend developer,website developer,react developer,next.js developer,alireza abchehre,alireza waterface,abchehre,waterface",
       robots: "index, follow",
       openGraph: {
          title: "Alireza Waterface | Frontend Developer",
@@ -26,7 +27,7 @@ export const en = {
    },
    nav: {
       home: "Home",
-      skills: "Skills",
+      skills: "Capabilities",
       projects: "Projects",
       resume: "Resume",
       blog: "Blog",
@@ -40,7 +41,7 @@ export const en = {
          social: "Social media",
          skills: "Main skills",
       },
-      skills: {
+      capabilities: {
          title: "What I offer",
          desc: "Capabilities and skills",
          coOp: "Collaborating with clients and paying close attention to project needs",

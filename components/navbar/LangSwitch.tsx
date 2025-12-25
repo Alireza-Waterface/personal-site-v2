@@ -1,8 +1,9 @@
 "use client";
 
-import { useOutsideClick } from "@/lib/useOutsideClick";
 import { usePathname, useRouter } from "next/navigation";
 import { Activity, useRef, useState } from "react";
+
+import { useOutsideClick } from "@/lib/useOutsideClick";
 
 import { IoLanguage } from "react-icons/io5";
 
@@ -19,13 +20,18 @@ export default function LanguageSwitcher() {
 
    const isEnglish = pathName.startsWith("/en");
 
-   function switchLanguage(e: React.MouseEvent<HTMLDivElement>) {
+   function switchLanguage(
+      e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>
+   ) {
       e.stopPropagation();
 
       const button = (e.target as HTMLElement).closest("button");
       if (!button) return;
 
       const selectedLang = button.name as "en" | "fa";
+
+      if (selectedLang === "en" && isEnglish) return;
+      if (selectedLang === "fa" && !isEnglish) return;
 
       if (!pathName) return;
       const segments = pathName.split("/");
