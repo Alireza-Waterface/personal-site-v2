@@ -27,7 +27,7 @@ export const fa = {
    },
    nav: {
       home: "صفحه‌اصلی",
-      skills: "مهارت‌ها",
+      capabilities: "مهارت‌ها",
       projects: "نمونه‌کار ها",
       resume: "رزومه",
       blog: "وبلاگ",

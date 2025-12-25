@@ -7,7 +7,7 @@ export default async function Capabilities({ lang }: { lang: Locale }) {
    return (
       <section
          id="capabilities"
-         className="flex flex-col gap-2 items-center bg-gray-200 dark:bg-gray-800 py-2 px-4"
+         className="flex flex-col gap-2 items-center bg-gray-200 dark:bg-gray-800 p-4"
       >
          <p className="text-lg text-red-600">
             {dict.homePage.capabilities.desc}

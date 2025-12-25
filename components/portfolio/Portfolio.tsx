@@ -8,7 +8,7 @@ export default async function Portfolio({ lang }: { lang: Locale }) {
    const dict = await getDictionary(lang);
 
    return (
-      <section id="portfolio" className="flex flex-col items-center px-4 py-2">
+      <section id="portfolio" className="flex flex-col items-center p-4">
          <p className="text-lg text-red-600">{dict.homePage.samples.desc}</p>
          <h2 className="text-2xl lg:text-3xl font-bold">
             {dict.homePage.samples.title}
