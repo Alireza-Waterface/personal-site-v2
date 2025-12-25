@@ -2,8 +2,6 @@ import { supabase } from "@/lib/supabase";
 import { getDictionary, Locale } from "@/lib/getDictionary";
 import { FaDownload } from "react-icons/fa6";
 
-import "./resume.css";
-
 interface Skill {
    id: number;
    skill: string;

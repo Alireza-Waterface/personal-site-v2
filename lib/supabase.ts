@@ -20,6 +20,14 @@ export type Database = {
                gallery_images: string[];
             };
          };
+         skills: {
+            Row: {
+               id: number;
+               created_at: string;
+               skill: string;
+               value: number;
+            };
+         };
       };
    };
 };
