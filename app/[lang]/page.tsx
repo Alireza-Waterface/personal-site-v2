@@ -1,11 +1,13 @@
+import { Suspense } from "react";
+
 import { Locale } from "@/lib/getDictionary";
 
 import Header from "@/components/header/Header";
 import Capabilities from "@/components/capabilities/Capabilities";
 import Portfolio from "@/components/portfolio/Portfolio";
 import Resume from "@/components/resume/Resume";
-import { Suspense } from "react";
 import ResumeSkeleton from "@/components/resume/ResumeSkeleton";
+import Contact from "@/components/contact/Contact";
 
 export default async function HomePage({
    params,
@@ -23,6 +25,7 @@ export default async function HomePage({
             <Suspense fallback={<ResumeSkeleton />}>
                <Resume lang={lang} />
             </Suspense>
+            <Contact lang={lang} />
          </main>
       </>
    );
