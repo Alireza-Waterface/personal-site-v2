@@ -1,4 +1,5 @@
 import "@/app/globals.css";
+import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/navbar/Navbar";
 import { getDictionary, Locale } from "@/lib/getDictionary";
 
@@ -44,6 +45,7 @@ export default async function RootLayout({
          <body className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-all">
             <Navbar lang={lang} />
             {children}
+            <Footer lang={lang} />
          </body>
       </html>
    );
