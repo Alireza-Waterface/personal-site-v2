@@ -10,7 +10,7 @@ import { FaSearch } from "react-icons/fa";
 export const revalidate = 3600;
 
 interface Props {
-   params: Promise<{ lang: Locale }>;
+   params: Promise<{ lang: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -96,7 +96,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Projects({ params }: Props) {
-   const { lang } = await params;
+   const resolvedParams = await params;
+   const lang = resolvedParams.lang as Locale;
 
    const { data: projects, error } = await supabase
       .from("projects")

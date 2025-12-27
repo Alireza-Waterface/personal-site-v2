@@ -11,7 +11,7 @@ export const revalidate = 3600;
 export const dynamicParams = true;
 
 interface Props {
-   params: Promise<{ lang: Locale; slug: string }>;
+   params: Promise<{ lang: string; slug: string }>;
 }
 
 async function getProjectData(slug: string) {
@@ -26,7 +26,10 @@ async function getProjectData(slug: string) {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-   const { lang, slug } = await params;
+   const { slug } = await params;
+   const resolvedParams = await params;
+   const lang = resolvedParams.lang as Locale;
+
    const project = await getProjectData(slug);
 
    if (!project) return {};
@@ -78,7 +81,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProjectPage({ params }: Props) {
-   const { lang, slug } = await params;
+   const { slug } = await params;
+   const resolvedParams = await params;
+   const lang = resolvedParams.lang as Locale;
+
    const project = await getProjectData(slug);
 
    if (!project) notFound();

@@ -35,21 +35,23 @@ export default async function RootLayout({
    params,
 }: {
    children: React.ReactNode;
-   params: Promise<{ lang: Locale }>;
+   params: Promise<{ lang: string }>;
 }) {
    const { lang } = await params;
-   const direction = lang === "fa" ? "rtl" : "ltr";
+   const safeLang = lang as Locale;
+
+   const direction = safeLang === "fa" ? "rtl" : "ltr";
 
    return (
       <html
-         lang={lang === "fa" ? "fa-IR" : lang}
+         lang={safeLang === "fa" ? "fa-IR" : safeLang}
          dir={direction}
          suppressHydrationWarning
       >
          <body className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-all">
-            <Navbar lang={lang} />
+            <Navbar lang={safeLang} />
             {children}
-            <Footer lang={lang} />
+            <Footer lang={safeLang} />
          </body>
       </html>
    );

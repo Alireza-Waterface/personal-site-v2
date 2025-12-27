@@ -13,9 +13,10 @@ import Blogs from "@/components/blogs/Blogs";
 export default async function HomePage({
    params,
 }: {
-   params: Promise<{ lang: Locale }>;
+   params: Promise<{ lang: string }>;
 }) {
-   const { lang } = await params;
+   const resolvedParams = await params;
+   const lang = resolvedParams.lang as Locale;
 
    return (
       <>

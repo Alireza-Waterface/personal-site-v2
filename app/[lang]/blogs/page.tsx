@@ -4,7 +4,7 @@ import { supabase } from "@/lib/supabase";
 import { Metadata } from "next";
 
 interface Props {
-   params: Promise<{ lang: Locale }>;
+   params: Promise<{ lang: string }>;
 }
 
 export interface BlogPost {
@@ -20,7 +20,8 @@ export interface BlogPost {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-   const { lang } = await params;
+   const resolvedParams = await params;
+   const lang = resolvedParams.lang as Locale;
 
    const { count } = await supabase
       .from("blogs")
@@ -107,7 +108,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Blogs({ params }: Props) {
-   const { lang } = await params;
+   const resolvedParams = await params;
+   const lang = resolvedParams.lang as Locale;
 
    const { data, error } = await supabase
       .from("blogs")
