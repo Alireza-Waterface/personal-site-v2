@@ -8,6 +8,7 @@ import Portfolio from "@/components/portfolio/Portfolio";
 import Resume from "@/components/resume/Resume";
 import ResumeSkeleton from "@/components/resume/ResumeSkeleton";
 import Contact from "@/components/contact/Contact";
+import Blogs from "@/components/blogs/Blogs";
 
 export default async function HomePage({
    params,
@@ -25,6 +26,7 @@ export default async function HomePage({
             <Suspense fallback={<ResumeSkeleton />}>
                <Resume lang={lang} />
             </Suspense>
+            <Blogs lang={lang} />
             <Contact lang={lang} />
          </main>
       </>

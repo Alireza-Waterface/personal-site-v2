@@ -62,42 +62,36 @@ export type Database = {
          };
          blogs: {
             Row: {
+               content: string;
+               cover_image: string | null;
                created_at: string;
-               desc: string | null;
-               end: string | null;
-               file: string | null;
+               excerpt: string;
                id: number;
-               image: string | null;
-               intro: string | null;
-               link: string | null;
+               reading_time: number | null;
                slug: string;
-               thumbnail: string | null;
+               tags: Json | null;
                title: string;
             };
             Insert: {
+               content: string;
+               cover_image?: string | null;
                created_at?: string;
-               desc?: string | null;
-               end?: string | null;
-               file?: string | null;
+               excerpt: string;
                id?: number;
-               image?: string | null;
-               intro?: string | null;
-               link?: string | null;
+               reading_time?: number | null;
                slug: string;
-               thumbnail?: string | null;
+               tags?: Json | null;
                title: string;
             };
             Update: {
+               content?: string;
+               cover_image?: string | null;
                created_at?: string;
-               desc?: string | null;
-               end?: string | null;
-               file?: string | null;
+               excerpt?: string;
                id?: number;
-               image?: string | null;
-               intro?: string | null;
-               link?: string | null;
+               reading_time?: number | null;
                slug?: string;
-               thumbnail?: string | null;
+               tags?: Json | null;
                title?: string;
             };
             Relationships: [];

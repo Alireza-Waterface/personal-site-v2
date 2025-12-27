@@ -13,3 +13,41 @@ body {
    padding: 0;
    margin: 0;
 }
+
+.hljs {
+   display: block;
+   overflow-x: auto;
+   padding: 1em;
+   background: #282c34;
+   color: #abb2bf;
+   border-radius: 0.5rem;
+}
+.hljs-comment,
+.hljs-quote {
+   color: #5c6370;
+   font-style: italic;
+}
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-operator {
+   color: #c678dd;
+}
+.hljs-string,
+.hljs-meta .hljs-string {
+   color: #98c379;
+}
+.hljs-function,
+.hljs-class .hljs-title {
+   color: #61aeee;
+}
+.hljs-number,
+.hljs-literal {
+   color: #d19a66;
+}
+.hljs-tag,
+.hljs-name {
+   color: #e06c75;
+}
+.hljs-attr {
+   color: #d19a66;
+}
