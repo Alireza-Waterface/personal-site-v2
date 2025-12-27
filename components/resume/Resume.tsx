@@ -35,7 +35,7 @@ export default async function Resume({ lang }: { lang: Locale }) {
             <p className="text-base text-red-600">
                {dict.homePage.resume.desc}
             </p>
-            <h2 className="text-2xl lg:text-3xl font-bold">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
                {dict.homePage.resume.title}
             </h2>
          </div>
@@ -98,7 +98,7 @@ export default async function Resume({ lang }: { lang: Locale }) {
             <div className="scale-0 opacity-0 h-0 peer-checked/edu:scale-100 peer-checked/edu:opacity-100 peer-checked/edu:h-[unset] peer-checked/edu:flex flex-col gap-8 w-full md:w-1/2 rtl:border-r-4 rtl:border-r-gray-100 rtl:dark:border-r-gray-950 rtl:pr-8 ltr:pl-8 ltr:border-l-4 ltr:border-l-gray-100 ltr:dark:border-l-gray-950 duration-500">
                <div className="relative flex flex-col gap-4 bg-gray-100 dark:bg-gray-900 p-6 md:p-8 rounded-lg shadow-sm border-e-4 border-red-600">
                   <span className="absolute top-9 rtl:-right-[46px] ltr:-left-[46px] w-6 h-6 rounded-full border-4 border-gray-100 dark:border-gray-950 bg-gray-300 dark:bg-gray-800 z-10" />
-                  <span className="absolute top-[47px] rtl:-right-[22px] ltr:-left-[22px] w-5 h-1 bg-gray-300 dark:bg-gray-950" />
+                  <span className="absolute top-[47px] rtl:-right-[20px] ltr:-left-[23px] w-6 h-1 bg-gray-300 dark:bg-gray-950" />
 
                   <p className="text-2xl font-bold text-red-600">
                      {dict.homePage.resume.education.bachelor.title}
@@ -110,7 +110,7 @@ export default async function Resume({ lang }: { lang: Locale }) {
 
                <div className="relative flex flex-col gap-4 bg-gray-100 dark:bg-gray-900 p-6 md:p-8 rounded-lg shadow-sm border-e-4 border-red-600">
                   <span className="absolute top-9 rtl:-right-[46px] ltr:-left-[46px] w-6 h-6 rounded-full border-4 border-gray-100 dark:border-gray-950 bg-gray-300 dark:bg-gray-800 z-10" />
-                  <span className="absolute top-[47px] rtl:-right-[22px] ltr:-left-[22px] w-5 h-1 bg-gray-300 dark:bg-gray-950" />
+                  <span className="absolute top-[47px] rtl:-right-[22px] ltr:-left-[23px] w-6 h-1 bg-gray-300 dark:bg-gray-950" />
 
                   <p className="text-2xl font-bold text-red-600">
                      {dict.homePage.resume.education.highSchool.title}

@@ -13,7 +13,7 @@ export default async function Capabilities({ lang }: { lang: Locale }) {
             {dict.homePage.capabilities.desc}
          </p>
 
-         <h2 className="text-md sm:text-xl md:text-2xl lg:text-3xl font-bold">
+         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
             {dict.homePage.capabilities.title}
          </h2>
 

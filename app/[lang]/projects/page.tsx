@@ -109,7 +109,7 @@ export default async function Projects({ params }: Props) {
 
    return (
       <>
-         <header className="w-full p-4 flex justify-center items-center">
+         <header className="w-full p-4 flex justify-center items-center bg-gray-200 dark:bg-gray-800">
             <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">
                {lang === "en"
                   ? "All Projects & Portfolio"
@@ -117,13 +117,13 @@ export default async function Projects({ params }: Props) {
             </h1>
          </header>
 
-         <main className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4 items-stretch">
+         <main className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4 items-stretch bg-gray-200 dark:bg-gray-800">
             {projects && projects.length > 0 ? (
                projects.map((project) => (
                   <Link
                      key={project.id}
                      href={`/${lang}/projects/${project.slug}`}
-                     className="group flex flex-col bg-gray-200 dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                     className="group flex flex-col bg-gray-100 dark:bg-gray-900 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
                   >
                      <div className="relative w-full aspect-video">
                         <Image

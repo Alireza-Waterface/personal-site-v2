@@ -8,13 +8,16 @@ export default async function Blogs({ lang }: { lang: Locale }) {
    const dict = await getDictionary(lang);
 
    return (
-      <section id="portfolio" className="flex flex-col items-center p-4">
+      <section
+         id="portfolio"
+         className="flex flex-col items-center p-4 dark:bg-gray-900 bg-gray-100"
+      >
          <p className="text-lg text-red-600">
             {lang === "en"
                ? "Improve your knowledge and learn"
                : "افزایش دانش و یادگیری"}
          </p>
-         <h2 className="text-2xl lg:text-3xl font-bold mt-2">
+         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
             {lang === "en" ? "Blogs" : "وبلاگ"}
          </h2>
 

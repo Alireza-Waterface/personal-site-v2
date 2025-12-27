@@ -28,18 +28,24 @@ export default async function Navbar({ lang }: { lang: Locale }) {
    };
 
    return (
-      <div className="p-2 bg-gray-200 dark:bg-gray-800 relative flex items-center justify-between gap-4 z-20">
-         <div className="flex items-center gap-8">
+      <div className="p-2 h-[60px] sm:h-[80px] bg-gray-300/50 dark:bg-gray-800/50 backdrop-blur-sm sticky top-0 flex items-center justify-between gap-4 z-20">
+         <div className="flex items-center gap-8 relative h-full">
             <MobileNav lang={lang} dict={dict.nav} />
 
-            <Image
-               src={logo.src}
-               alt="Innovation Logo"
-               width={70}
-               height={70}
-               quality={75}
-               className="rounded-full select-none"
-            />
+            <Link
+               href={`/${lang}/`}
+               title={lang === "en" ? "Home page" : "صفحه اصلی"}
+               className="h-full flex items-center"
+            >
+               <Image
+                  src={logo.src}
+                  alt="Innovation Logo"
+                  width={70}
+                  height={70}
+                  quality={75}
+                  className="rounded-full select-none h-[50px] w-[50px] sm:h-full sm:w-full"
+               />
+            </Link>
 
             <nav className="hidden sm:flex items-center gap-2 text-sm md:text-lg lg:gap-4">
                <Link

@@ -123,7 +123,7 @@ export default async function Blogs({ params }: Props) {
    const blogs = data as BlogPost[];
 
    return (
-      <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full p-4 bg-gray-100 dark:bg-gray-900 border-b border-black/10 dark:border-white/10">
+      <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full p-4 bg-gray-100 dark:bg-gray-800 border-b border-black/10 dark:border-white/10">
          <header className="col-span-full">
             <h1 className="text-center text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
                {lang === "en" ? "All blogs" : "همه بلاگ‌ها"}

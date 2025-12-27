@@ -49,7 +49,7 @@ export default function BlogsList({
                   key={blog.id}
                   layout
                   onClick={() => !isExpanded && toggleExpand(blog.id)}
-                  className={`relative bg-gray-200 dark:bg-gray-800 rounded-2xl overflow-hidden cursor-pointer border border-transparent hover:border-red-600/30 transition-all ${
+                  className={`relative bg-gray-200 dark:bg-gray-900 rounded-2xl overflow-hidden cursor-pointer border border-transparent hover:border-red-600/30 transition-all ${
                      isExpanded
                         ? "md:col-span-2 shadow-xl ring-2 ring-red-600/20 bg-white dark:bg-gray-700"
                         : "shadow-sm"

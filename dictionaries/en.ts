@@ -38,7 +38,7 @@ export const en = {
    homePage: {
       header: {
          greeting: "Hello, welcome to my website",
-         role: "I am Alireza Waterface, a Frontend Developer",
+         role: "I am Alireza Waterface, a FrontEnd Developer",
          desc: "More than 2 years of experience in web development, specializing in front-end.|Expert in NextJS, React, TypeScript and ...|Bachelor's degree in Computer Engineering from Kermanshah University of Technology",
          social: "Social media",
          skills: "Main skills",

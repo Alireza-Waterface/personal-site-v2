@@ -42,7 +42,7 @@ export default async function RootLayout({
          dir={direction}
          suppressHydrationWarning
       >
-         <body className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-all">
+         <body className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-all">
             <Navbar lang={lang} />
             {children}
             <Footer lang={lang} />

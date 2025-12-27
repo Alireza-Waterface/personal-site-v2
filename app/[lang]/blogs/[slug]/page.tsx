@@ -125,14 +125,14 @@ export default async function BlogPostPage({ params }: Props) {
    };
 
    return (
-      <article className="w-full max-w-4xl mx-auto p-4">
+      <article className="w-full p-4 bg-gray-200 dark:bg-gray-800">
          <Back
             text={lang === "en" ? "Back to Blogs" : "بازگشت به بلاگ‌ها"}
             path={`/${lang}/blogs`}
-            className="mb-4"
+            className="mb-4 flex items-center gap-2 w-full max-w-4xl mx-auto"
          />
 
-         <header className="flex flex-col gap-6 mb-4 py-4 border-y border-gray-200 dark:border-gray-800">
+         <header className="flex flex-col max-w-4xl mx-auto gap-6 mb-4 py-4 border-y border-gray-300 dark:border-gray-700">
             <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-gray-100 leading-tight">
                {post.title}
             </h1>
@@ -171,7 +171,7 @@ export default async function BlogPostPage({ params }: Props) {
          </header>
 
          {post.cover_image && (
-            <div className="relative w-full aspect-video md:aspect-video mb-12 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-800">
+            <div className="relative w-full max-w-4xl mx-auto aspect-video md:aspect-video mb-12 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-800">
                <Image
                   src={post.cover_image}
                   alt={post.title}
@@ -184,7 +184,8 @@ export default async function BlogPostPage({ params }: Props) {
 
          <div
             className="
-               prose prose-lg dark:prose-invert max-w-none
+               max-w-4xl mx-auto
+               prose prose-lg dark:prose-invert
                prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-gray-100
                prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed prose-p:text-justify
                prose-li:text-gray-700 dark:prose-li:text-gray-300

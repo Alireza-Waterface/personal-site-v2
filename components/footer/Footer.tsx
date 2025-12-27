@@ -22,7 +22,7 @@ export default async function Footer({ lang }: { lang: Locale }) {
       "p-1 rounded transition-colors duration-200 hover:bg-red-600 hover:text-white text-gray-700 dark:text-gray-300";
 
    return (
-      <footer className="w-full p-4 bg-gray-100 dark:bg-gray-800 grid grid-cols-1 md:grid-cols-[1fr_0.8fr_1fr] gap-8 md:gap-4 items-center">
+      <footer className="w-full p-4 bg-gray-300 dark:bg-gray-900 grid grid-cols-1 md:grid-cols-[1fr_0.8fr_1fr] gap-8 md:gap-4 items-center">
          <div className="flex flex-col gap-2 order-1 md:order-0">
             <p className={headerStyle}>{dict.footer.related}</p>
             <ul

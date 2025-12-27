@@ -48,11 +48,11 @@ export default function MobileNav({
          </button>
 
          <div
-            className={`absolute left-0 bg-gray-200/50 dark:bg-gray-700/50 backdrop-blur-sm w-full transition-all duration-300 ease-out z-[-1]
+            className={`absolute -left-[8px] bg-gray-200 dark:bg-gray-950 w-screen transition-all duration-300 ease-out z-[-1]
                ${
                   isOpen
-                     ? "top-[86px] scale-100 opacity-100 pointer-events-auto"
-                     : "-top-40 scale-50 opacity-0 pointer-events-none"
+                     ? "top-[52px] sm:top-[80px] scale-100 opacity-100 pointer-events-auto"
+                     : "-top-40 scale-75 opacity-0 pointer-events-none"
                }
             `}
          >
