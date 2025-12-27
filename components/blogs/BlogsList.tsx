@@ -48,7 +48,7 @@ export default async function BlogCards({
                className="p-2 flex flex-col bg-gray-200 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800/50 rounded-xl cursor-pointer transition-all"
             >
                <Link
-                  href={`${lang}/projects/${card.slug}`}
+                  href={`${lang}/blogs/${card.slug}`}
                   className="flex gap-4 flex-col w-full"
                >
                   <div className="relative min-h-48">
