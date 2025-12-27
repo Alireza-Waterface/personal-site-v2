@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { headers } from "next/headers";
 
 import logo from "@/app/icon.png";
 
@@ -13,19 +12,8 @@ import ThemeSwitcher from "./ThemeSwitch";
 export default async function Navbar({ lang }: { lang: Locale }) {
    const dict = await getDictionary(lang);
 
-   const headerList = await headers();
-   const pathName = headerList.get("x-pathname") ?? "/";
-
-   const baseStyle = "p-2 rounded-sm transition-all";
-   const activeStyle = "bg-gray-400/50 dark:bg-gray-900";
-   const inactiveStyle = "hover:bg-gray-300 dark:hover:bg-gray-700";
-
-   const isActive = (route: string) => {
-      if (route === "/") {
-         return pathName === "/" || pathName === `/${lang}`;
-      }
-      return pathName.includes(route);
-   };
+   const baseStyle =
+      "p-2 rounded-sm transition-all hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-red-600";
 
    return (
       <div className="p-2 h-[60px] sm:h-[80px] bg-gray-300/50 dark:bg-gray-800/50 backdrop-blur-sm sticky top-0 flex items-center justify-between gap-4 z-20">
@@ -48,46 +36,22 @@ export default async function Navbar({ lang }: { lang: Locale }) {
             </Link>
 
             <nav className="hidden sm:flex items-center gap-2 text-sm md:text-lg lg:gap-4">
-               <Link
-                  className={`${baseStyle} ${
-                     isActive("/") ? activeStyle : inactiveStyle
-                  }`}
-                  href={`/${lang}/`}
-               >
+               <Link className={baseStyle} href={`/${lang}/`}>
                   {dict.nav.home}
                </Link>
-               <Link
-                  className={`${baseStyle} ${
-                     isActive("/blogs") ? activeStyle : inactiveStyle
-                  }`}
-                  href={`/${lang}/blogs`}
-               >
+               <Link className={baseStyle} href={`/${lang}/blogs`}>
                   {dict.nav.blog}
                </Link>
-               <Link
-                  className={`${baseStyle} ${inactiveStyle}`}
-                  href={`/${lang}#capabilities`}
-               >
+               <Link className={baseStyle} href={`/${lang}#capabilities`}>
                   {dict.nav.capabilities}
                </Link>
-               <Link
-                  className={`${baseStyle} ${
-                     isActive("/projects") ? activeStyle : inactiveStyle
-                  }`}
-                  href={`/${lang}/projects`}
-               >
+               <Link className={baseStyle} href={`/${lang}/projects`}>
                   {dict.nav.projects}
                </Link>
-               <Link
-                  className={`${baseStyle} ${inactiveStyle}`}
-                  href={`/${lang}#resume`}
-               >
+               <Link className={baseStyle} href={`/${lang}#resume`}>
                   {dict.nav.resume}
                </Link>
-               <Link
-                  className={`${baseStyle} ${inactiveStyle}`}
-                  href={`/${lang}#contact`}
-               >
+               <Link className={baseStyle} href={`/${lang}#contact`}>
                   {dict.nav.contact}
                </Link>
             </nav>
