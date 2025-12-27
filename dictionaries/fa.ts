@@ -7,6 +7,15 @@ export const fa = {
       robots: "index, follow",
       keywords:
          "فریلنسر,علیرضا آبچهره,برنامه نویس وب,برنامه نویس فرانت اند,توسعه دهنده فرانت اند,waterface,alireza waterface,alireza abchehre,abchehre,توسعه دهنده وب,برنامه نویس سایت,آبچهره,آب چره,",
+      manifest: "/manifest.json",
+      appleWebApp: {
+         capable: true,
+         statusBarStyle: "default",
+         title: "Waterface",
+      },
+      formatDetection: {
+         telephone: false,
+      },
       openGraph: {
          title: "علیرضا آبچهره | توسعه‌دهنده فرانت‌اند",
          description:

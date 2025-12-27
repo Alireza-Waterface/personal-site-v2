@@ -1,5 +1,3 @@
-import { title } from "node:process";
-
 export const en = {
    meta: {
       title: "Alireza Waterface | Frontend Developer",
@@ -9,6 +7,15 @@ export const en = {
       keywords:
          "freelancer,web developer,front-end developer,frontend developer,website developer,react developer,next.js developer,alireza abchehre,alireza waterface,abchehre,waterface",
       robots: "index, follow",
+      manifest: "/manifest.json",
+      appleWebApp: {
+         capable: true,
+         statusBarStyle: "default",
+         title: "Waterface",
+      },
+      formatDetection: {
+         telephone: false,
+      },
       openGraph: {
          title: "Alireza Waterface | Frontend Developer",
          description:

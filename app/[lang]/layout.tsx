@@ -24,6 +24,10 @@ export const viewport = {
    minimumScale: 1,
    maximumScale: 5,
    userScalable: false,
+   themeColor: [
+      { media: "(prefers-color-scheme: light)", color: "#f3f4f6" }, // gray-100
+      { media: "(prefers-color-scheme: dark)", color: "#111827" }, // gray-900
+   ],
 };
 
 export default async function RootLayout({
