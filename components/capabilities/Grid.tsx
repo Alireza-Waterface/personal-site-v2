@@ -1,9 +1,8 @@
 import Image from "next/image";
-import dynamic from "next/dynamic";
 
 import { getDictionary, Locale } from "@/lib/getDictionary";
 
-const GridGlobe = dynamic(() => import("./GridGlobe"));
+import DelayedGlobe from "./DelayedGlobe";
 
 interface Items {
    id: number;
@@ -75,7 +74,7 @@ export default async function Grid({ lang }: { lang: Locale }) {
                      <h3 className="absolute top-2 start-4 text-lg lg:text-xl pe-4 font-bold z-20">
                         {item.title}
                      </h3>
-                     <GridGlobe />
+                     <DelayedGlobe />
                   </div>
                )}
                {item.id === 3 && (
