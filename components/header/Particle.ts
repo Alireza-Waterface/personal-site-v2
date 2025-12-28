@@ -1,3 +1,5 @@
+// components/Particle.ts
+
 type ParticleConfig = {
    maxSpeed: number;
    radius: [number, number];
@@ -45,36 +47,44 @@ export class Particle {
       if (mx !== null && my !== null) {
          const dx = this.x - mx;
          const dy = this.y - my;
-         const d2 = dx * dx + dy * dy;
+         const d2 = dx * dx + dy * dy; // Optimized: Distance Squared
          const r = this.config.mouseInfluence * DPR;
+         const r2 = r * r;
 
-         if (d2 < r * r) {
-            const d = Math.sqrt(d2) || 0.001;
-            this.vx += (dx / d) * this.config.repelStrength * (1 - d / r);
-            this.vy += (dy / d) * this.config.repelStrength * (1 - d / r);
+         // Check against squared radius to avoid Math.sqrt in most cases
+         if (d2 < r2) {
+            const d = Math.sqrt(d2) || 0.001; // Only calc sqrt if needed
+            const force = (this.config.repelStrength * (1 - d / r)) / d;
+            this.vx += dx * force;
+            this.vy += dy * force;
          }
       }
 
+      // Simple speed limiting without hypot if possible, but hypot is ok for single particle
       const sp = Math.hypot(this.vx, this.vy);
       if (sp > this.config.maxSpeed) {
-         this.vx *= this.config.maxSpeed / sp;
-         this.vy *= this.config.maxSpeed / sp;
+         const ratio = this.config.maxSpeed / sp;
+         this.vx *= ratio;
+         this.vy *= ratio;
       }
 
       this.x += this.vx * DPR;
       this.y += this.vy * DPR;
 
+      // Wrap around screen
       if (this.x < -50) this.x = W + 50;
-      if (this.x > W + 50) this.x = -50;
+      else if (this.x > W + 50) this.x = -50;
+
       if (this.y < -50) this.y = H + 50;
-      if (this.y > H + 50) this.y = -50;
+      else if (this.y > H + 50) this.y = -50;
    }
 
    draw(color: string) {
       this.ctx.beginPath();
+      // Optimization: drawing squares is faster than circles (arc)
+      // but circles look better. Keeping arc but optimizing context calls in parent.
       this.ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
       this.ctx.fillStyle = color;
-      this.ctx.globalAlpha = 0.9;
       this.ctx.fill();
    }
 }
