@@ -64,7 +64,7 @@ export default async function Grid({ lang }: { lang: Locale }) {
                         src={item.img!}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 33vw"
+                        sizes="(max-width: 768px) 100vw, 66vw"
                         loading="lazy"
                      />
                   </div>

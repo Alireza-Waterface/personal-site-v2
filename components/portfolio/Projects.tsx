@@ -58,6 +58,7 @@ export default async function ProjectCards({
                         loading="lazy"
                         fetchPriority="low"
                         quality={75}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                         className="h-60 w-full rounded-tl-lg rounded-tr-lg object-cover object-top group-hover:scale-105 transition-all duration-300 group-active:scale-105"
                      />
                   </div>
