@@ -27,7 +27,7 @@ export default async function Blogs({ lang }: { lang: Locale }) {
 
          <Link
             href={`/${lang}/blogs`}
-            className="rounded-md px-8 py-3 bg-gray-100 dark:bg-gray-800 border-2 border-red-700 shadow-xl outline-2 outline-transparent outline-offset-[1rem] transition-all duration-300 text-xl hover:outline-red-700 hover:-outline-offset-1 hover:bg-gray-200 dark:hover:bg-gray-900 font-semibold active:translate-y-[3px] mt-8"
+            className="rounded-md px-6 py-2 bg-gray-100 dark:bg-gray-800 border-2 border-red-700 shadow-xl outline-2 outline-transparent outline-offset-[1rem] transition-all duration-300 text-lg hover:outline-red-700 hover:-outline-offset-1 hover:bg-gray-200 dark:hover:bg-gray-900 font-semibold active:translate-y-[3px] mt-8"
          >
             {dict.homePage.samples.all}
          </Link>

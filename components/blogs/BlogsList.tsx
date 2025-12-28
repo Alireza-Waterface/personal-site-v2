@@ -45,11 +45,11 @@ export default async function BlogCards({
          {blogs.map((card) => (
             <li
                key={card.id}
-               className="p-2 flex flex-col bg-gray-200 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800/50 rounded-xl cursor-pointer transition-all"
+               className="flex flex-col bg-gray-200 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800/50 rounded-xl cursor-pointer transition-all overflow-hidden shadow-sm hover:shadow-lg duration-300 hover:-translate-y-1"
             >
                <Link
                   href={`${lang}/blogs/${card.slug}`}
-                  className="flex gap-4 flex-col w-full"
+                  className="flex gap-4 flex-col w-full group h-full"
                >
                   <div className="relative min-h-48">
                      <Image
@@ -59,11 +59,11 @@ export default async function BlogCards({
                         loading="lazy"
                         fetchPriority="low"
                         quality={75}
-                        className="h-60 w-full rounded-lg object-cover object-top"
+                        className="h-60 w-full rounded-tl-lg rounded-tr-lg object-cover object-top group-hover:scale-105 transition-all duration-300 group-active:scale-105"
                      />
                   </div>
-                  <div className="flex justify-center items-center flex-col gap-2">
-                     <h3 className="text-gray-900 dark:text-gray-100 text-center text-lg font-bold">
+                  <div className="flex justify-center items-center flex-col gap-2 p-2">
+                     <h3 className="text-gray-900 dark:text-gray-100 text-center text-lg font-bold group-active:text-red-600 group-hover:text-red-600 transition-colors">
                         {card.title}
                      </h3>
                      <p className="text-gray-800 dark:text-gray-400 text-justify text-base">
@@ -71,6 +71,9 @@ export default async function BlogCards({
                            ? card.excerpt.slice(0, 100) + " ..."
                            : card.excerpt.slice(0, 100)}
                      </p>
+                     <span className="mt-auto pt-4 text-sm font-medium text-red-600 opacity-0 group-hover:opacity-100 transition-opacity self-start justify-self-end group-active:opacity-100">
+                        {lang === "en" ? "View Details →" : "مشاهده جزئیات ←"}
+                     </span>
                   </div>
                </Link>
             </li>

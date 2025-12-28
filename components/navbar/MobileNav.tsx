@@ -48,7 +48,7 @@ export default function MobileNav({
          </button>
 
          <div
-            className={`absolute -left-[8px] bg-gray-200 dark:bg-gray-950 w-screen transition-all duration-300 ease-out z-[-1]
+            className={`absolute -start-[8px] bg-gray-200 dark:bg-gray-950 w-screen transition-all duration-300 ease-out z-[-1]
                ${
                   isOpen
                      ? "top-[52px] sm:top-[80px] scale-100 opacity-100 pointer-events-auto"
