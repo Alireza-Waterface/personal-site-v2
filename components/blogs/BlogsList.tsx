@@ -17,9 +17,14 @@ export default async function BlogCards({
 }: {
    lang: Locale;
 }): Promise<ReactElement | null> {
+   const query =
+      lang === "en"
+         ? "id, slug, title:title_en, excerpt:excerpt_en, cover_image"
+         : "id, slug, title, excerpt, cover_image";
+
    const { data, error } = await supabase
       .from("blogs")
-      .select("id, slug, title, excerpt, cover_image")
+      .select(query)
       .order("created_at", { ascending: false })
       .limit(4);
 

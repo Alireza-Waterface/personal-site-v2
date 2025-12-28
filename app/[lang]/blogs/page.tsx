@@ -7,16 +7,19 @@ interface Props {
    params: Promise<{ lang: string }>;
 }
 
+export const revalidate = 3600;
+
 export interface BlogPost {
    id: number;
    slug: string;
    title: string;
+   title_en: string[];
    excerpt: string;
+   excerpt_en: string;
    cover_image: string | null;
    created_at: string;
    reading_time: number;
    tags: string[] | null;
-   content?: string;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -51,7 +54,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             title: `Alireza Waterface | Blogs and posts - ${blogsCount} blogs`,
             description:
                "Read useful blogs about web development, tech and more written by Alireza Waterface",
-            url: "https://waterface.ir/en/projects",
+            url: "https://waterface.ir/en/blogs",
             siteName:
                "Alireza Waterface personal website | FrontEnd web developer",
             locale: "en_US",
@@ -91,7 +94,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
          title: `علیرضا آبچهره | بلاگ‌ها و پست‌ها - ${blogsCount} بلاگ`,
          description:
             "علیرضا آبچهره | توسعه دهنده فرانت‌اند و فریلنسر | پست‌های وبلاگ",
-         url: "https://waterface.ir/projects",
+         url: "https://waterface.ir/fa/blogs",
          siteName: "وب‌سایت شخصی علیرضا آبچهره | توسعه‌دهنده فرانت‌اند",
          locale: "fa_IR",
          type: "website",
@@ -111,11 +114,14 @@ export default async function Blogs({ params }: Props) {
    const resolvedParams = await params;
    const lang = resolvedParams.lang as Locale;
 
+   const selectQuery =
+      lang === "en"
+         ? "id, slug, title:title_en, excerpt:excerpt_en, cover_image, created_at, reading_time, tags"
+         : "id, slug, title, excerpt, cover_image, created_at, reading_time, tags";
+
    const { data, error } = await supabase
       .from("blogs")
-      .select(
-         "id, slug, title, excerpt, cover_image, created_at, reading_time, tags"
-      )
+      .select(selectQuery)
       .order("created_at", { ascending: false });
 
    if (error) {

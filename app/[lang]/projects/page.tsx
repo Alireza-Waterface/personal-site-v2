@@ -57,7 +57,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       };
    }
 
-   // Persian Metadata
    return {
       title: `علیرضا آبچهره | پروژه‌ها و نمونه‌کار ها - ${projectCount} پروژه`,
       description:
@@ -79,7 +78,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       openGraph: {
          title: `علیرضا آبچهره | پروژه‌ها و نمونه‌کار ها - ${projectCount} پروژه`,
          description: "علیرضا آبچهره | توسعه دهنده فرانت‌اند و فریلنسر",
-         url: "https://waterface.ir/projects",
+         url: "https://waterface.ir/fa/projects",
          siteName: "وب‌سایت شخصی علیرضا آبچهره | توسعه‌دهنده فرانت‌اند",
          locale: "fa_IR",
          type: "website",
@@ -99,9 +98,14 @@ export default async function Projects({ params }: Props) {
    const resolvedParams = await params;
    const lang = resolvedParams.lang as Locale;
 
+   const query =
+      lang === "en"
+         ? "id, slug, title:title_en, description:description_en, cover_image"
+         : "id, slug, title, description, cover_image";
+
    const { data: projects, error } = await supabase
       .from("projects")
-      .select("id, slug, title, description, cover_image")
+      .select(query)
       .order("created_at", { ascending: false });
 
    if (error) {
@@ -129,7 +133,7 @@ export default async function Projects({ params }: Props) {
                      <div className="relative w-full aspect-video">
                         <Image
                            src={project.cover_image!}
-                           alt={project.title}
+                           alt={project.title!}
                            fill
                            className="object-cover transition-transform duration-500 group-hover:scale-105"
                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

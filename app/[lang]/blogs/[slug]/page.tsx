@@ -10,13 +10,11 @@ import remarkGfm from "remark-gfm";
 import { supabase } from "@/lib/supabase";
 import { Locale } from "@/lib/getDictionary";
 
-import { BlogPost } from "../page";
-
 import Back from "@/components/ui/Back";
 
 import { FaCalendar, FaClock, FaTag } from "react-icons/fa6";
 
-export const revalidate = 3600;
+export const revalidate = 21600;
 export const dynamicParams = true;
 
 interface Props {
@@ -28,39 +26,61 @@ interface BlogImageProps {
    alt?: string;
 }
 
-async function getPost(slug: string) {
+async function getPost(slug: string, lang: Locale) {
+   const query =
+      lang === "en"
+         ? "title:title_en, slug, tags, content:content_en, cover_image, created_at, excerpt:excerpt_en, metaDescription:metaDesc_en, metaKeywords:metaKeywords_en, reading_time"
+         : "title, slug, tags, content, cover_image, created_at, excerpt, metaDescription, metaKeywords, reading_time";
+
    const { data } = await supabase
       .from("blogs")
-      .select("*")
+      .select(query)
       .eq("slug", slug)
       .single();
 
-   const post = data as BlogPost;
-   return post;
+   return data;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
    const { slug, lang } = await params;
-   const post = await getPost(slug);
+   const post = await getPost(slug, lang);
 
    if (!post) return {};
 
+   const isEn = lang === "en";
+
+   const keywordsArray = Array.isArray(post.metaKeywords)
+      ? (post.metaKeywords as string[])
+      : Array.isArray(post.tags)
+      ? (post.tags as string[])
+      : [];
+
    return {
-      title:
-         lang === "en"
-            ? `Alireza Waterface | Blog: ${post.title}`
-            : `علیرضا آبچهره | بلاگ: ${post.title}`,
-      description: post.excerpt,
-      keywords: post.tags,
-      authors: [{ name: "Alireza Waterface" }],
-      robots: "index, follow",
+      title: isEn
+         ? `Alireza Waterface | Blog: ${post.title}`
+         : `علیرضا آبچهره | بلاگ: ${post.title}`,
+      description: post.metaDescription || post.excerpt,
+      keywords: keywordsArray,
+      authors: [{ name: isEn ? "Alireza Waterface" : "علیرضا آبچهره" }],
       openGraph: {
          title: post.title,
-         description: post.excerpt,
+         description: post.metaDescription || post.excerpt,
          type: "article",
          publishedTime: post.created_at,
-         authors: ["Alireza Waterface"],
-         images: [{ url: post.cover_image || "" }],
+         authors: [isEn ? "Alireza Waterface" : "علیرضا آبچهره"],
+         locale: isEn ? "en_US" : "fa_IR",
+         images: [
+            {
+               url: post.cover_image || "",
+               alt: post.title,
+            },
+         ],
+      },
+      twitter: {
+         card: "summary_large_image",
+         title: post.title,
+         description: post.metaDescription || post.excerpt,
+         images: [post.cover_image || ""],
       },
    };
 }
@@ -113,7 +133,7 @@ const mdxComponents = {
 
 export default async function BlogPostPage({ params }: Props) {
    const { slug, lang } = await params;
-   const post = await getPost(slug);
+   const post = await getPost(slug, lang);
 
    if (!post) notFound();
 
@@ -158,7 +178,7 @@ export default async function BlogPostPage({ params }: Props) {
                </div>
 
                <div className="flex flex-wrap gap-2">
-                  {post.tags?.map((tag: string) => (
+                  {(post.tags as string[])?.map((tag: string) => (
                      <span
                         key={tag}
                         className="flex items-center justify-center gap-2 text-xs md:text-sm font-medium text-red-600 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/30 px-3 py-1 rounded-full"

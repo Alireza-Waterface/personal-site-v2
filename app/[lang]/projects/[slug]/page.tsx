@@ -14,23 +14,53 @@ interface Props {
    params: Promise<{ lang: string; slug: string }>;
 }
 
-async function getProjectData(slug: string) {
+interface ProjectData {
+   title: string;
+   description: string;
+   cover_image: string;
+   slug: string;
+   metaDesc?: string;
+   metaKeywords?: string[] | null;
+   gallery_images?: string[] | null;
+   visitLink?: string | null;
+   github?: string | null;
+   tools?: string[] | null;
+   features?: string[] | null;
+}
+
+async function getProjectData(slug: string, lang: Locale, meta: boolean) {
+   let query = "";
+
+   if (lang === "en" && meta) {
+      query =
+         "title:title_en, metaDesc:metadescription_en, metaKeywords:metakeywords_en, description:description_en, cover_image, slug";
+   } else if (lang === "fa" && meta) {
+      query = "title, metaDesc, metaKeywords, description, cover_image, slug";
+   } else if (lang === "en" && !meta) {
+      query =
+         "title:title_en, cover_image, gallery_images, description:description_en, visitLink, github, tools, features:features_en";
+   } else {
+      query =
+         "title, cover_image, gallery_images, description, visitLink, github, tools, features";
+   }
+
    const { data, error } = await supabase
       .from("projects")
-      .select("*")
+      .select(query)
       .eq("slug", slug)
       .single();
 
    if (error || !data) return null;
-   return data;
+
+   return data as unknown as ProjectData;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-   const { slug } = await params;
    const resolvedParams = await params;
+   const { slug } = resolvedParams;
    const lang = resolvedParams.lang as Locale;
 
-   const project = await getProjectData(slug);
+   const project = await getProjectData(slug, lang, true);
 
    if (!project) return {};
 
@@ -43,7 +73,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       lang === "en"
          ? `Project details for ${project.title}`
          : `علیرضا آبچهره | پروژه ${
-              project.metaDesc || project.description.slice(0, 100)
+              project.metaDesc || project.description?.slice(0, 100)
            }`;
 
    const keywordsArray = Array.isArray(project.metaKeywords)
@@ -81,11 +111,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProjectPage({ params }: Props) {
-   const { slug } = await params;
    const resolvedParams = await params;
+   const { slug } = resolvedParams;
    const lang = resolvedParams.lang as Locale;
 
-   const project = await getProjectData(slug);
+   const project = await getProjectData(slug, lang, false);
 
    if (!project) notFound();
 
@@ -97,12 +127,12 @@ export default async function ProjectPage({ params }: Props) {
       : [];
 
    const linkStyle =
-      "flex items-center gap-2 text-red-600 font-medium relative w-fit after:content-[''] after:bg-red-600 after:h-[2px] after:rounded-md after:w-0 after:transition-all after:duration-300 after:absolute after:bottom-0 after:right-0 hover:after:w-full";
+      "flex items-center gap-2 text-red-600 font-medium relative w-fit after:content-[''] after:bg-red-600 after:h-[2px] after:rounded-md after:w-0 after:transition-all after:duration-300 after:absolute after:-bottom-[2px] after:start-0 hover:after:w-full";
    const legendStyle = "text-lg text-red-600 font-bold mb-2";
 
    return (
-      <article className="w-full">
-         <section className="flex flex-col gap-6 p-4 border-b border-black dark:border-white/10">
+      <article className="w-full bg-gray-200 dark:bg-gray-900">
+         <section className="flex flex-col gap-6 p-4">
             <div className="w-full flex justify-center">
                <div className="w-full md:w-[80%]">
                   <ProjectGallery

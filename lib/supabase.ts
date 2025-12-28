@@ -9,6 +9,8 @@ export type Json =
    | Json[];
 
 export type Database = {
+   // Allows to automatically instantiate createClient with right options
+   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
    __InternalSupabase: {
       PostgrestVersion: "12.2.3 (519615d)";
    };
@@ -63,82 +65,118 @@ export type Database = {
          blogs: {
             Row: {
                content: string;
-               cover_image: string | null;
+               content_en: string;
+               cover_image: string;
                created_at: string;
                excerpt: string;
+               excerpt_en: string;
                id: number;
-               reading_time: number | null;
+               metaDesc_en: string;
+               metaDescription: string;
+               metaKeywords: Json;
+               metaKeywords_en: Json;
+               reading_time: number;
                slug: string;
-               tags: Json | null;
+               tags: Json;
                title: string;
+               title_en: string;
             };
             Insert: {
                content: string;
-               cover_image?: string | null;
+               content_en: string;
+               cover_image: string;
                created_at?: string;
                excerpt: string;
+               excerpt_en: string;
                id?: number;
-               reading_time?: number | null;
+               metaDesc_en: string;
+               metaDescription: string;
+               metaKeywords: Json;
+               metaKeywords_en: Json;
+               reading_time: number;
                slug: string;
-               tags?: Json | null;
+               tags: Json;
                title: string;
+               title_en: string;
             };
             Update: {
                content?: string;
-               cover_image?: string | null;
+               content_en?: string;
+               cover_image?: string;
                created_at?: string;
                excerpt?: string;
+               excerpt_en?: string;
                id?: number;
-               reading_time?: number | null;
+               metaDesc_en?: string;
+               metaDescription?: string;
+               metaKeywords?: Json;
+               metaKeywords_en?: Json;
+               reading_time?: number;
                slug?: string;
-               tags?: Json | null;
+               tags?: Json;
                title?: string;
+               title_en?: string;
             };
             Relationships: [];
          };
          projects: {
             Row: {
-               cover_image: string | null;
+               cover_image: string;
                created_at: string;
                description: string;
+               description_en: string | null;
                features: Json | null;
+               features_en: string | null;
                gallery_images: string[] | null;
                github: string | null;
                id: number;
-               metaDesc: string | null;
-               metaKeywords: Json | null;
+               metaDesc: string;
+               metadescription_en: string | null;
+               metaKeywords: Json;
+               metakeywords_en: string | null;
                slug: string;
                title: string;
+               title_en: string | null;
                tools: Json | null;
                visitLink: string | null;
             };
             Insert: {
-               cover_image?: string | null;
+               cover_image: string;
                created_at?: string;
                description: string;
+               description_en?: string | null;
                features?: Json | null;
+               features_en?: string | null;
                gallery_images?: string[] | null;
                github?: string | null;
                id?: number;
-               metaDesc?: string | null;
-               metaKeywords?: Json | null;
+               metaDesc: string;
+               metadescription_en?: string | null;
+               metaKeywords: Json;
+               metakeywords_en?: string | null;
                slug: string;
                title: string;
+               title_en?: string | null;
                tools?: Json | null;
                visitLink?: string | null;
             };
             Update: {
-               cover_image?: string | null;
+               cover_image?: string;
                created_at?: string;
                description?: string;
+               description_en?: string | null;
                features?: Json | null;
+               features_en?: string | null;
                gallery_images?: string[] | null;
                github?: string | null;
                id?: number;
-               metaDesc?: string | null;
-               metaKeywords?: Json | null;
+               metaDesc?: string;
+               metadescription_en?: string | null;
+               metaKeywords?: Json;
+               metakeywords_en?: string | null;
                slug?: string;
                title?: string;
+               title_en?: string | null;
                tools?: Json | null;
                visitLink?: string | null;
             };

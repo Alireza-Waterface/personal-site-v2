@@ -17,9 +17,14 @@ export default async function ProjectCards({
 }: {
    lang: Locale;
 }): Promise<ReactElement | null> {
+   const query =
+      lang === "en"
+         ? "id, slug, title:title_en, description:description_en, cover_image"
+         : "id, slug, title, description, cover_image";
+
    const { data, error } = await supabase
       .from("projects")
-      .select("id, slug, title, description, cover_image")
+      .select(query)
       .order("created_at", { ascending: false })
       .limit(4);
 
