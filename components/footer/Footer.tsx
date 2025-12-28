@@ -1,158 +1,115 @@
 import { SiReact } from "react-icons/si";
-import {
-   FaGithub,
-   FaLinkedin,
-   FaPhone,
-   FaRegCopyright,
-   FaTelegram,
-   FaInstagramSquare,
-} from "react-icons/fa";
-import { IoIosMail } from "react-icons/io";
-import { IoLogoWhatsapp } from "react-icons/io5";
-import { getDictionary, Locale } from "@/lib/getDictionary";
+import { FaRegCopyright } from "react-icons/fa6";
+import { Locale } from "@/lib/getDictionary";
+import CopyEmail from "../footer/CopyEmail";
+import TechTicker from "../footer/TechTicker";
+import FocusCard from "../footer/FocusCard";
+import SocialLinks from "@/components/header/SocialLinks";
 
 export default async function Footer({ lang }: { lang: Locale }) {
-   const dict = await getDictionary(lang);
-
-   const primaryText = "text-red-600";
-   const headerStyle = `text-xl font-medium mb-4 ${primaryText}`;
-   const linkHoverUnderline =
-      "relative transition-colors duration-200 hover:text-red-600 after:content-[''] after:absolute after:bottom-[-4px] rtl:after:right-0 ltr:after:left-0 after:h-[2px] after:w-0 after:bg-red-600 after:transition-all after:duration-200 after:rounded-[4px] hover:after:w-full";
-   const socialIconStyle =
-      "p-1 rounded transition-colors duration-200 hover:bg-red-600 hover:text-white text-gray-700 dark:text-gray-300";
-
    return (
-      <footer className="w-full p-4 bg-gray-300 dark:bg-gray-900 grid grid-cols-1 md:grid-cols-[1fr_0.8fr_1fr] gap-8 md:gap-4 items-center">
-         <div className="flex flex-col gap-2 order-1 md:order-0">
-            <p className={headerStyle}>{dict.footer.related}</p>
-            <ul
-               className={`flex flex-col gap-2 list-disc list-inside marker:${primaryText}`}
-            >
-               {[
-                  { name: "NextJS", url: "https://nextjs.org/" },
-                  { name: "ReactJS", url: "https://react.dev/" },
-                  { name: "MDN", url: "https://developer.mozilla.org/en-US/" },
-                  { name: "Vite", url: "https://vite.dev/" },
-               ].map((site) => (
-                  <li key={site.name} className="w-fit ms-4 flex items-center">
-                     <a
-                        href={site.url}
-                        title={site.name}
-                        referrerPolicy="no-referrer"
-                        rel="external"
-                        target="_blank"
-                        className={`inline-block ${linkHoverUnderline} text-gray-700 dark:text-gray-300`}
-                     >
-                        {site.name}
-                     </a>
-                  </li>
-               ))}
-            </ul>
-         </div>
+      <footer className="w-full p-4 mt-auto border-t border-black/5 dark:border-white/10 bg-gray-50 dark:bg-gray-950">
+         <div className="">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-12">
+               <div className="lg:col-span-4 flex flex-col gap-4">
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 px-2">
+                     {lang === "en" ? "Let's Connect" : "ارتباط با من"}
+                  </h3>
 
-         <div className="grid place-items-center order-3 md:order-0 self-center">
-            <SiReact
-               size={120}
-               className={`${primaryText} transition-all duration-300 animate-[spin_8s_linear_infinite] hover:drop-shadow-[0_0_1.5em_rgba(220,38,38,1)]`}
-            />
-         </div>
+                  <CopyEmail email="Alireza.waterface@outlook.com" />
 
-         <div className="flex flex-col gap-4 self-end order-2 md:order-0 w-full">
-            <h3 className={headerStyle}>{dict.nav.contact}</h3>
+                  <div className="flex items-center justify-between p-4 bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-2xl group hover:ring-1 active:ring-1 ring-green-600 transition-all">
+                     <div className="flex flex-col">
+                        <span className="text-xs text-gray-500 uppercase tracking-wider">
+                           {lang === "en" ? "Status" : "وضعیت"}
+                        </span>
+                        <span className="text-sm font-bold text-green-600 flex items-center gap-2">
+                           <span className="relative flex h-2 w-2">
+                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                           </span>
+                           {lang === "en"
+                              ? "Available for work"
+                              : "آماده همکاری"}
+                        </span>
+                     </div>
+                     <div className="text-right">
+                        <span className="text-xs text-gray-500 uppercase tracking-wider">
+                           {lang === "en" ? "Location" : "محل سکونت"}
+                        </span>
+                        <span className="block text-sm font-bold text-gray-800 dark:text-gray-200 group-hover:text-green-600 transition-all">
+                           {lang === "en" ? "Iran, Tehran" : "ایران، تهران"}
+                        </span>
+                     </div>
+                  </div>
+               </div>
 
-            <address className="flex flex-col gap-4 not-italic">
-               <a
-                  href="tel:+989155706085"
-                  className="flex items-center gap-2 group w-fit"
-                  title={lang === "en" ? "Phone number" : "شماره تماس"}
-               >
-                  <FaPhone size={20} className={primaryText} />
-                  <span
-                     className={`text-gray-700 ms-1 dark:text-gray-300 ${linkHoverUnderline}`}
-                  >
-                     {lang === "en"
-                        ? "Phone: 0915 570 6085"
-                        : "تلفن تماس: 6085 570 0915"}
-                  </span>
-               </a>
+               <div className="lg:col-span-4 flex flex-col items-center justify-center gap-6 py-8 order-first lg:order-0">
+                  <div className="relative group cursor-pointer">
+                     <div className="absolute inset-0 bg-blue-500/20 blur-[60px] rounded-full group-hover:bg-blue-500/30 transition-all duration-500" />
+                     <SiReact
+                        size={100}
+                        className="text-gray-300 dark:text-gray-700 animate-[spin_10s_linear_infinite] group-hover:fill-[#61DBFB] transition-colors duration-300 relative z-10 group-active:fill-[#61DBFB]"
+                     />
+                  </div>
 
-               <a
-                  href="mailto:Alireza.waterface@outlook.com"
-                  className="flex items-center gap-2 group w-fit"
-                  title={lang === "en" ? "Email" : "ایمیل"}
-               >
-                  <IoIosMail size={25} className={primaryText} />
-                  <span
-                     className={`text-gray-700 dark:text-gray-300 ${linkHoverUnderline}`}
-                  >
-                     {lang === "en"
-                        ? "Email: Alireza.waterface@outlook.com"
-                        : "آدرس ایمیل: Alireza.waterface@outlook.com"}
-                  </span>
-               </a>
+                  <div className="w-full max-w-[200px] text-center">
+                     <TechTicker />
+                  </div>
+               </div>
 
-               <div className="flex flex-wrap gap-4 mt-2">
-                  <a
-                     href="https://linkedin.com/in/waterface"
-                     referrerPolicy="no-referrer"
-                     rel="external"
-                     target="_blank"
-                     className={socialIconStyle}
-                     title="LinkedIn"
-                  >
-                     <FaLinkedin size={45} />
-                  </a>
+               <div className="lg:col-span-4 flex flex-col gap-4">
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 px-2">
+                     {lang === "en" ? "Currently" : "فعالیت‌ها"}
+                  </h3>
+
+                  <FocusCard lang={lang} />
 
                   <a
                      href="https://github.com/Alireza-Waterface"
-                     referrerPolicy="no-referrer"
-                     rel="external"
                      target="_blank"
-                     className={socialIconStyle}
-                     title="GitHub"
+                     className="p-4 bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-2xl hover:ring-1 ring-[#DDE2E6] transition-all group active:ring-1"
                   >
-                     <FaGithub size={45} />
-                  </a>
-
-                  <a
-                     href="https://instagram.com/waterface_ar"
-                     referrerPolicy="no-referrer"
-                     rel="external"
-                     target="_blank"
-                     className={socialIconStyle}
-                     title="Instagram"
-                  >
-                     <FaInstagramSquare size={45} />
-                  </a>
-
-                  <a
-                     href="https://wa.me/+989155706085"
-                     referrerPolicy="no-referrer"
-                     rel="external"
-                     target="_blank"
-                     className={socialIconStyle}
-                     title="Whatsapp"
-                  >
-                     <IoLogoWhatsapp size={45} />
-                  </a>
-
-                  <a
-                     href="https://t.me/+989155706085"
-                     referrerPolicy="no-referrer"
-                     rel="external"
-                     target="_blank"
-                     className={socialIconStyle}
-                     title="Telegram"
-                  >
-                     <FaTelegram size={45} />
+                     <div className="flex justify-between items-center mb-2">
+                        <span className="text-xs text-gray-500 font-mono">
+                           git commit -m &quot;update&quot;
+                        </span>
+                        <span className="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-600 dark:text-gray-300">
+                           24h ago
+                        </span>
+                     </div>
+                     <div className="flex gap-1">
+                        {[...Array(7)].map((_, i) => (
+                           <div
+                              key={i}
+                              className={`h-3 flex-1 rounded-sm ${
+                                 [1, 3, 4, 6].includes(i)
+                                    ? "bg-green-500"
+                                    : "bg-gray-200 dark:bg-gray-700"
+                              }`}
+                           />
+                        ))}
+                     </div>
                   </a>
                </div>
-            </address>
-         </div>
+            </div>
 
-         <div className="col-span-1 md:col-span-3 order-4 flex items-center justify-center gap-2 mt-8 pt-4 border-t border-black dark:border-white/10 w-full text-center text-sm md:text-base text-gray-700 dark:text-gray-300">
-            {dict.footer.copyright}
-            <FaRegCopyright />
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-8 border-t border-gray-200 dark:border-gray-800">
+               <div className="scale-100 origin-left">
+                  <SocialLinks lang={lang} />
+               </div>
+
+               <div className="flex items-center gap-2 text-sm text-gray-500 font-medium">
+                  <span>© {new Date().getFullYear()} Waterface</span>
+                  <FaRegCopyright size={14} />
+                  <span className="hidden md:inline">|</span>
+                  <span className="hidden md:inline">
+                     {lang === "en"
+                        ? "Built with Next.js 16"
+                        : "ساخته‌شده با NextJS 16"}
+                  </span>
+               </div>
+            </div>
          </div>
       </footer>
    );

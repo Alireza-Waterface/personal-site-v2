@@ -51,3 +51,39 @@ body {
 .hljs-attr {
    color: #d19a66;
 }
+
+@keyframes infinite-scroll {
+   from {
+      transform: translateX(0);
+   }
+   to {
+      transform: translateX(-50%);
+   }
+}
+
+.animate-infinite-scroll {
+   animation: infinite-scroll 20s linear infinite;
+   display: flex;
+   width: max-content;
+}
+
+.mask-linear-fade {
+   mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+   );
+   -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+   );
+}
+
+.mask-linear-fade:hover .animate-infinite-scroll {
+   animation-play-state: paused;
+}
