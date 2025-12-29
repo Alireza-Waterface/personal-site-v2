@@ -18,7 +18,7 @@ export default function DelayedGlobe() {
 
          delayTimer = setTimeout(() => {
             setShouldLoad(true);
-         }, 5000);
+         }, 3000);
       };
 
       const cleanupListeners = () => {
