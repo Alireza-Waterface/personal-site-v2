@@ -3,6 +3,9 @@ import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/navbar/Navbar";
 import { getDictionary, Locale } from "@/lib/getDictionary";
 
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 export async function generateMetadata({
    params,
 }: {
@@ -52,6 +55,9 @@ export default async function RootLayout({
             <Navbar lang={safeLang} />
             {children}
             <Footer lang={safeLang} />
+
+            <Analytics />
+            <SpeedInsights />
          </body>
       </html>
    );
