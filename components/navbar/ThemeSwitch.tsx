@@ -69,7 +69,8 @@ export default function ThemeSwitcher({ lang }: { lang: Locale }) {
          <button
             className="cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-700 p-2 rounded-md active:translate-y-[3px] transition-all"
             onClick={() => setIsSwitcherVisible((prev) => !prev)}
-            title="Switch theme | تغییر تم"
+            title={lang === "en" ? "Switch theme" : "تغییر تم"}
+            aria-label={lang === "en" ? "Theme Switcher" : "تغییر تم"}
          >
             {theme === "dark" && <FaMoon size={25} />}
             {theme === "light" && <FaSun size={25} />}

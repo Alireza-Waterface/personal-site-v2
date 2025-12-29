@@ -67,8 +67,9 @@ export default function SocialLinks({ lang }: { lang: "en" | "fa" }) {
                        bg-white/5 backdrop-blur-md border-t border-b border-white/10 shadow-lg
                        overflow-hidden transition-all duration-500 active:scale-95"
                   title={lang === "en" ? social.name : social.faName}
+                  aria-label={lang === "en" ? social.name : social.faName}
                >
-                  <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-l from-white/10 to-transparent -skew-x-[45deg] transition-transform duration-500 -translate-x-[150%] group-hover:translate-x-[250%]" />
+                  <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-l from-white/10 to-transparent -skew-x-45 transition-transform duration-500 -translate-x-[150%] group-hover:translate-x-[250%]" />
 
                   <social.icon
                      className={`relative z-20 w-8 h-8 md:w-10 md:h-10 transition-transform duration-500 group-hover:scale-110 ${social.iconClass}`}

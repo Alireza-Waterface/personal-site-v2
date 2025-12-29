@@ -48,6 +48,7 @@ export default function LanguageSwitcher() {
             className="cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-700 p-2 rounded-md active:translate-y-[3px] transition-all"
             onClick={() => setIsSwitcherVisible((prev) => !prev)}
             title={isEnglish ? "Switch language" : "تغییر زبان"}
+            aria-label={isEnglish ? "Switch language" : "تغییر زبان"}
          >
             <IoLanguage size={25} />
          </button>

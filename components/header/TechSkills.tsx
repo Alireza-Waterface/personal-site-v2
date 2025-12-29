@@ -61,7 +61,7 @@ export default function TechSkills({ lang }: { lang: "en" | "fa" }) {
                        overflow-hidden transition-all duration-500 hover:tracking-widest"
                   title={lang === "en" ? skill.name : skill.faName}
                >
-                  <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-l from-white/10 to-transparent -skew-x-[45deg] transition-transform duration-500 -translate-x-[150%] group-hover:translate-x-[250%]" />
+                  <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-l from-white/10 to-transparent -skew-x-45 transition-transform duration-500 -translate-x-[150%] group-hover:translate-x-[250%]" />
 
                   <skill.icon
                      className={`relative z-20 w-8 h-8 md:w-12 md:h-12 transition-transform duration-500 group-hover:fill-white group-hover:scale-110 ${skill.iconClass}`}

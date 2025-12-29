@@ -81,33 +81,35 @@ export default async function Grid({ lang }: { lang: Locale }) {
                   <div className="flex gap-2 justify-between items-stretch px-2 py-2 h-full">
                      <div className="flex flex-col items-start justify-center h-full">
                         <p className="opacity-80 text-sm">{item.description}</p>
-                        <h3 className="text-lg font-bold">{item.title}</h3>
+                        <h3 className="text-lg lg:text-xl font-bold">
+                           {item.title}
+                        </h3>
                      </div>
 
                      <div className="flex items-center gap-2 h-full relative text-sm">
-                        <div className="flex flex-col gap-2">
-                           <span className="bg-gray-800 p-2 rounded-md text-center"></span>
-                           <span className="bg-gray-800 p-1 rounded-md text-center">
+                        <div className="flex flex-col gap-2 mb-auto -translate-y-4 lg:translate-y-0">
+                           <span className="bg-gray-800 w-22 h-10 grid place-items-center rounded-md text-center"></span>
+                           <span className="bg-gray-800 w-22 h-10 grid place-items-center rounded-md text-center">
                               NextJS
                            </span>
-                           <span className="bg-gray-800 p-1 rounded-md text-center">
+                           <span className="bg-gray-800 w-22 h-10 grid place-items-center rounded-md text-center">
                               React
                            </span>
-                           <span className="bg-gray-800 p-2 rounded-md text-center">
+                           <span className="bg-gray-800 w-22 h-10 grid place-items-center rounded-md text-center">
                               TypeScript
                            </span>
                         </div>
-                        <div className="flex flex-col gap-2 mt-auto">
-                           <span className="bg-gray-800 p-2 rounded-md text-center">
+                        <div className="flex flex-col gap-2 mt-auto translate-y-4 lg:translate-y-0">
+                           <span className="bg-gray-800 w-22 h-10 grid place-items-center rounded-md text-center">
                               Performance
                            </span>
-                           <span className="bg-gray-800 p-1 rounded-md text-center">
+                           <span className="bg-gray-800 w-22 h-10 grid place-items-center rounded-md text-center">
                               SEO
                            </span>
-                           <span className="bg-gray-800 p-1 rounded-md text-center">
+                           <span className="bg-gray-800 w-22 h-10 grid place-items-center rounded-md text-center">
                               Network
                            </span>
-                           <span className="bg-gray-800 p-2 rounded-md text-center"></span>
+                           <span className="bg-gray-800 w-22 h-10 grid place-items-center rounded-md text-center"></span>
                         </div>
                      </div>
                   </div>

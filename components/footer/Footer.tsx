@@ -100,7 +100,7 @@ export default async function Footer({ lang }: { lang: Locale }) {
                </div>
 
                <div className="flex items-center gap-2 text-sm text-gray-500 font-medium">
-                  <span>© {new Date().getFullYear()} Waterface</span>
+                  <span>2026 Waterface</span>
                   <FaRegCopyright size={14} />
                   <span className="hidden md:inline">|</span>
                   <span className="hidden md:inline">

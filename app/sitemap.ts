@@ -11,7 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       .from("blogs")
       .select("slug, created_at");
 
-   const routes = ["", "/projects", "/blogs", "/resume", "/contact"];
+   const routes = ["", "/projects", "/blogs"];
    const languages = ["en", "fa"];
 
    const staticEntries = routes.flatMap((route) =>
