@@ -8,24 +8,38 @@ const RealGridGlobe = dynamic(() => import("./GridGlobe"), {
 });
 
 export default function DelayedGlobe() {
-   const [isLoaded, setIsLoaded] = useState(false);
+   const [shouldLoad, setShouldLoad] = useState(false);
 
    useEffect(() => {
-      const loadGlobe = () => setIsLoaded(true);
+      let delayTimer: NodeJS.Timeout;
 
-      if ("requestIdleCallback" in window) {
-         // Modern browsers: Run when CPU is free
-         const handle = window.requestIdleCallback(loadGlobe, {
-            timeout: 5000,
-         });
-         return () => window.cancelIdleCallback(handle);
-      } else {
-         const timer = setTimeout(loadGlobe, 3000);
-         return () => clearTimeout(timer);
-      }
+      const handleInteraction = () => {
+         cleanupListeners();
+
+         delayTimer = setTimeout(() => {
+            setShouldLoad(true);
+         }, 5000);
+      };
+
+      const cleanupListeners = () => {
+         window.removeEventListener("mousemove", handleInteraction);
+         window.removeEventListener("scroll", handleInteraction);
+         window.removeEventListener("touchstart", handleInteraction);
+         window.removeEventListener("keydown", handleInteraction);
+      };
+
+      window.addEventListener("mousemove", handleInteraction);
+      window.addEventListener("scroll", handleInteraction);
+      window.addEventListener("touchstart", handleInteraction);
+      window.addEventListener("keydown", handleInteraction);
+
+      return () => {
+         cleanupListeners();
+         clearTimeout(delayTimer);
+      };
    }, []);
 
-   if (!isLoaded) {
+   if (!shouldLoad) {
       return <div className="w-full h-full bg-transparent min-h-[160px]" />;
    }
 
