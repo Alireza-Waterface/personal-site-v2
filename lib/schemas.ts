@@ -9,9 +9,7 @@ export const getContactSchema = (lang: Locale) => {
          .string()
          .trim()
          .nonempty({
-            message: isEn
-               ? "Name cannot be empty"
-               : "توضیحات نمی‌تواند خالی باشد",
+            message: isEn ? "Name cannot be empty" : "نام نمی‌تواند خالی باشد",
          })
          .min(2, {
             message: isEn
@@ -29,7 +27,7 @@ export const getContactSchema = (lang: Locale) => {
          .nonempty({
             message: isEn
                ? "Phone number cannot be empty"
-               : "توضیحات نمی‌تواند خالی باشد",
+               : "شماره تلفن نمی‌تواند خالی باشد",
          })
          .regex(/^(\+98|0)?9\d{9}$/, {
             message: isEn
@@ -42,7 +40,7 @@ export const getContactSchema = (lang: Locale) => {
          .nonempty({
             message: isEn
                ? "Subject cannot be empty"
-               : "توضیحات نمی‌تواند خالی باشد",
+               : "عنوان نمی‌تواند خالی باشد",
          })
          .min(5, {
             message: isEn
