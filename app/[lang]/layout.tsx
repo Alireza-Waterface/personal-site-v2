@@ -50,6 +50,7 @@ export default async function RootLayout({
          lang={safeLang === "fa" ? "fa-IR" : safeLang}
          dir={direction}
          suppressHydrationWarning
+         className="scroll-smooth sm:scroll-pt-20 scroll-pt-15"
       >
          <body className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-all">
             <Navbar lang={safeLang} />

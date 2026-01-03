@@ -17,7 +17,7 @@ import {
 import { Locale } from "@/lib/getDictionary";
 
 export default function BlogsList({
-   blogs,
+   blogs = [],
    lang,
 }: {
    blogs: BlogPost[];
@@ -59,25 +59,29 @@ export default function BlogsList({
                      layout="position"
                      className="p-4 flex flex-col gap-3"
                   >
-                     <div className="flex justify-between items-start">
-                        <div className="flex flex-wrap gap-2 mb-2">
+                     <div className="flex justify-between items-center gap-4">
+                        <div className="flex flex-wrap gap-2">
                            {blog.tags?.map((tag) => (
                               <span
                                  key={tag}
+                                 style={{
+                                    direction: "ltr",
+                                 }}
                                  className="text-xs px-2 py-1 rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
                               >
                                  #{tag}
                               </span>
                            ))}
                         </div>
-                        <span className="text-xs text-gray-500 flex items-center gap-1">
-                           <FaClock size={14} /> {blog.reading_time} min
+                        <span className="text-xs text-gray-500 flex items-center gap-1 flex-nowrap min-w-14">
+                           <FaClock size={14} /> {blog.reading_time}
+                           {lang === "en" ? " min" : " دقیقه"}
                         </span>
                      </div>
 
                      <motion.h3
                         layout="position"
-                        className="text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-100"
+                        className="text-lg md:text-xl font-bold text-gray-900 dark:text-gray-100"
                      >
                         {blog.title}
                      </motion.h3>

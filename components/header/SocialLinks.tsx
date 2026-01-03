@@ -16,7 +16,8 @@ export default function SocialLinks({ lang }: { lang: "en" | "fa" }) {
          url: "https://github.com/Alireza-Waterface",
          icon: FaGithub,
          color: "#DDE2E6",
-         iconClass: "fill-black dark:fill-[#DDE2E6] group-hover:fill-black",
+         iconClass:
+            "fill-black dark:fill-[#DDE2E6] group-hover:fill-black group-active:fill-black",
       },
       {
          name: "Telegram",
@@ -41,10 +42,10 @@ export default function SocialLinks({ lang }: { lang: "en" | "fa" }) {
          {socials.map((social) => (
             <div
                key={social.name}
-               className="relative group w-14 h-14 md:w-18 md:h-18 flex justify-center items-center"
+               className="relative group w-14 h-14 md:w-18 md:h-18 flex justify-center items-center select-none"
             >
                <div
-                  className="absolute -top-1 left-1/2 -translate-x-1/2 w-6 h-2 rounded-full transition-all duration-500 group-hover:top-0 group-hover:w-[80%] group-hover:h-[50%] group-hover:rounded-[30px]"
+                  className="absolute -top-1 left-1/2 -translate-x-1/2 w-6 h-2 rounded-full transition-all duration-500 group-hover:top-0 group-hover:w-[80%] group-hover:h-[50%] group-hover:rounded-[30px] group-active:top-0 group-active:w-[80%] group-active:h-[50%] group-active:rounded-[30px]"
                   style={{
                      backgroundColor: social.color,
                      boxShadow: `0 0 5px ${social.color}, 0 0 15px ${social.color}, 0 0 30px ${social.color}`,
@@ -52,7 +53,7 @@ export default function SocialLinks({ lang }: { lang: "en" | "fa" }) {
                />
 
                <div
-                  className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-6 h-2 rounded-full transition-all duration-500 group-hover:bottom-0 group-hover:w-[80%] group-hover:h-[50%] group-hover:rounded-[30px]"
+                  className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-6 h-2 rounded-full transition-all duration-500 group-hover:bottom-0 group-hover:w-[80%] group-hover:h-[50%] group-hover:rounded-[30px] group-active:bottom-0 group-active:w-[80%] group-active:h-[50%] group-active:rounded-[30px]"
                   style={{
                      backgroundColor: social.color,
                      boxShadow: `0 0 5px ${social.color}, 0 0 15px ${social.color}, 0 0 30px ${social.color}`,
@@ -72,7 +73,7 @@ export default function SocialLinks({ lang }: { lang: "en" | "fa" }) {
                   <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-l from-white/10 to-transparent -skew-x-45 transition-transform duration-500 -translate-x-[150%] group-hover:translate-x-[250%]" />
 
                   <social.icon
-                     className={`relative z-20 w-8 h-8 md:w-10 md:h-10 transition-transform duration-500 group-hover:scale-110 ${social.iconClass}`}
+                     className={`relative z-20 w-8 h-8 md:w-10 md:h-10 transition-transform duration-500 group-active:fill-white group-active:scale-110 group-hover:scale-110 ${social.iconClass}`}
                   />
                </a>
             </div>

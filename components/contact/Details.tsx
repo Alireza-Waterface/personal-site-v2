@@ -20,7 +20,7 @@ export default async function Details({ lang }: { lang: Locale }) {
             {dict.homePage.contact.info.title}
          </p>
 
-         <h3 className="text-lg sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100">
+         <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-100">
             {dict.homePage.contact.info.desc}
          </h3>
 

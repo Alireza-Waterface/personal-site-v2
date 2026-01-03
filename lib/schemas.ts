@@ -7,6 +7,12 @@ export const getContactSchema = (lang: Locale) => {
    return z.object({
       name: z
          .string()
+         .trim()
+         .nonempty({
+            message: isEn
+               ? "Name cannot be empty"
+               : "توضیحات نمی‌تواند خالی باشد",
+         })
          .min(2, {
             message: isEn
                ? "Name must be at least 2 characters"
@@ -17,13 +23,27 @@ export const getContactSchema = (lang: Locale) => {
                ? "Name cannot exceed 50 characters"
                : "نام نمی‌تواند بیشتر از ۵۰ کاراکتر باشد",
          }),
-      phone: z.string().regex(/^09\d{9}$/, {
-         message: isEn
-            ? "Invalid phone number (e.g., 09123456789)"
-            : "شماره تلفن معتبر نیست (مثال: 09123456789)",
-      }),
+      phone: z
+         .string()
+         .trim()
+         .nonempty({
+            message: isEn
+               ? "Phone number cannot be empty"
+               : "توضیحات نمی‌تواند خالی باشد",
+         })
+         .regex(/^(\+98|0)?9\d{9}$/, {
+            message: isEn
+               ? "Invalid phone number (e.g., 09123456789 | +989123456789)"
+               : "شماره تلفن معتبر نیست (مثال: 09123456789)",
+         }),
       title: z
          .string()
+         .trim()
+         .nonempty({
+            message: isEn
+               ? "Subject cannot be empty"
+               : "توضیحات نمی‌تواند خالی باشد",
+         })
          .min(5, {
             message: isEn
                ? "Subject must be at least 5 characters"
@@ -36,6 +56,12 @@ export const getContactSchema = (lang: Locale) => {
          }),
       description: z
          .string()
+         .trim()
+         .nonempty({
+            message: isEn
+               ? "Description cannot be empty"
+               : "توضیحات نمی‌تواند خالی باشد",
+         })
          .min(5, {
             message: isEn
                ? "Message must be at least 5 characters"

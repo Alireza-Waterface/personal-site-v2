@@ -17,7 +17,7 @@ export default async function Blogs({ lang }: { lang: Locale }) {
                ? "Improve your knowledge and learn"
                : "افزایش دانش و یادگیری"}
          </p>
-         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
+         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-2">
             {lang === "en" ? "Blogs" : "وبلاگ"}
          </h2>
 

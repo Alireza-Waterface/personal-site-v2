@@ -39,7 +39,7 @@ export const en = {
       capabilities: "Capabilities",
       projects: "Projects",
       resume: "Resume",
-      blog: "Blog",
+      blog: "Blogs",
       contact: "Contact Me",
    },
    homePage: {

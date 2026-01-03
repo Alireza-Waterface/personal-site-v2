@@ -98,7 +98,7 @@ const mdxComponents = {
       </div>
    ),
    BlogImage: (props: BlogImageProps) => (
-      <div className="relative w-full aspect-video my-8 rounded-xl overflow-hidden shadow-lg">
+      <div className="relative w-full aspect-video my-4 rounded-xl overflow-hidden shadow-lg">
          <Image
             src={props.src}
             alt={props.alt || "Blog Image"}
@@ -107,13 +107,37 @@ const mdxComponents = {
          />
       </div>
    ),
-   a: (props: ComponentPropsWithoutRef<"a">) => (
+   a: (
+      props: ComponentPropsWithoutRef<"a"> & { children: React.ReactNode }
+   ) => (
       <a
          {...props}
          className="text-red-600 font-medium hover:underline underline-offset-4"
          target="_blank"
          rel="noopener noreferrer"
-      />
+      >
+         {props.children}
+      </a>
+   ),
+   h2: (
+      props: ComponentPropsWithoutRef<"h2"> & { children: React.ReactNode }
+   ) => (
+      <h2
+         {...props}
+         className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-tight"
+      >
+         {props.children}
+      </h2>
+   ),
+   h3: (
+      props: ComponentPropsWithoutRef<"h3"> & { children: React.ReactNode }
+   ) => (
+      <h3
+         {...props}
+         className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-tight"
+      >
+         {props.children}
+      </h3>
    ),
    table: (props: ComponentPropsWithoutRef<"table">) => (
       <div className="overflow-x-auto my-6 rounded-lg border border-gray-200 dark:border-gray-700">
@@ -145,14 +169,14 @@ export default async function BlogPostPage({ params }: Props) {
    };
 
    return (
-      <article className="w-full p-4 bg-gray-200 dark:bg-gray-800">
+      <article className="w-full bg-gray-200 dark:bg-gray-800 relative">
          <Back
             text={lang === "en" ? "Back to Blogs" : "بازگشت به بلاگ‌ها"}
             path={`/${lang}/blogs`}
-            className="mb-4 flex items-center gap-2 w-full max-w-4xl mx-auto"
+            className="flex items-center gap-2 w-full max-w-4xl mx-auto sticky top-[60px] sm:top-[80px] bg-gray-300/50 dark:bg-gray-800/50 px-2 py-4 z-10 backdrop-blur-sm"
          />
 
-         <header className="flex flex-col max-w-4xl mx-auto gap-6 mb-4 py-4 border-y border-gray-300 dark:border-gray-700">
+         <header className="flex flex-col max-w-4xl mx-auto gap-6 mb-4 p-4 border-y border-gray-300 dark:border-gray-700">
             <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-gray-100 leading-tight">
                {post.title}
             </h1>
@@ -191,7 +215,7 @@ export default async function BlogPostPage({ params }: Props) {
          </header>
 
          {post.cover_image && (
-            <div className="relative w-full max-w-4xl mx-auto aspect-video md:aspect-video mb-12 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-800">
+            <div className="relative w-full max-w-4xl mx-auto aspect-video object-cover p-4 mb-8 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-800">
                <Image
                   src={post.cover_image}
                   alt={post.title}
@@ -204,13 +228,13 @@ export default async function BlogPostPage({ params }: Props) {
 
          <div
             className="
-               max-w-4xl mx-auto
+               max-w-4xl mx-auto text-justify p-4
                prose prose-lg dark:prose-invert
                prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-gray-100
                prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed prose-p:text-justify
                prose-li:text-gray-700 dark:prose-li:text-gray-300
                prose-strong:text-red-600
-               prose-code:text-red-600 prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-1 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
+               prose-code:text-red-600 prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:my-2 prose-code:px-1 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
                prose-pre:bg-[#282c34] prose-pre:p-0 prose-pre:rounded-lg prose-pre:overflow-hidden
                "
          >
