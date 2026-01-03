@@ -6,6 +6,8 @@ import { getDictionary, Locale } from "@/lib/getDictionary";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
+import { Vazirmatn, Roboto } from "next/font/google";
+
 export async function generateMetadata({
    params,
 }: {
@@ -33,6 +35,17 @@ export const viewport = {
    ],
 };
 
+const vazirmatn = Vazirmatn({
+   subsets: ["arabic", "latin"],
+   weight: ["400", "600", "700"],
+   preload: false,
+});
+const roboto = Roboto({
+   subsets: ["latin"],
+   weight: ["400", "600", "700"],
+   preload: false,
+});
+
 export default async function RootLayout({
    children,
    params,
@@ -50,7 +63,9 @@ export default async function RootLayout({
          lang={safeLang === "fa" ? "fa-IR" : safeLang}
          dir={direction}
          suppressHydrationWarning
-         className="scroll-smooth sm:scroll-pt-20 scroll-pt-15"
+         className={`scroll-smooth sm:scroll-pt-20 scroll-pt-15 ${
+            safeLang === "fa" ? vazirmatn.className : roboto.className
+         }`}
       >
          <body className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-all">
             <Navbar lang={safeLang} />
