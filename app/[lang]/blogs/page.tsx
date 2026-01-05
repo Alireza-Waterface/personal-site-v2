@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       return {
          title: `Alireza Waterface | Blogs and posts - ${blogsCount} blogs`,
          description:
-            "Frontend Developer & Freelancer | Blogs and posts about tech, web development, front-end and more",
+            "FrontEnd Developer & Freelancer | Blogs and posts about tech, web development, front-end and more",
          keywords: [
             "Freelancer",
             "Frontend Developer",
@@ -64,7 +64,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
                   url: "https://wjbwobxiekyzfcjxjnkt.supabase.co/storage/v1/object/public/me/me.webp",
                   width: 640,
                   height: 640,
-                  alt: "Alireza Abchehre",
+                  alt: "Alireza Waterface",
                },
             ],
          },
@@ -80,6 +80,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       keywords: [
          "فریلنسر",
          "علیرضا آبچهره",
+         "علیرضا آب چهره",
          "برنامه نویس وب",
          "برنامه نویس فرانت اند",
          "توسعه دهنده فرانت اند",

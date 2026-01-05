@@ -79,12 +79,12 @@ export default function BlogsList({
                         </span>
                      </div>
 
-                     <motion.h3
+                     <motion.h2
                         layout="position"
                         className="text-lg md:text-xl font-bold text-gray-900 dark:text-gray-100"
                      >
                         {blog.title}
-                     </motion.h3>
+                     </motion.h2>
 
                      <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
                         <span className="flex items-center gap-1">
@@ -100,6 +100,9 @@ export default function BlogsList({
                               toggleExpand(blog.id);
                            }}
                            className="ms-auto p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors cursor-pointer"
+                           title="expand blog card"
+                           aria-label="expand blog card"
+                           name="expand blog card"
                         >
                            {isExpanded ? (
                               <FaChevronUp size={20} />

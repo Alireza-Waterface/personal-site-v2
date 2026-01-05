@@ -18,7 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       languages.map((lang) => ({
          url: `${baseUrl}/${lang}${route}`,
          lastModified: new Date(),
-         changeFrequency: "monthly" as const,
+         changeFrequency: "weekly" as const,
          priority: route === "" ? 1 : 0.8,
       }))
    );
@@ -27,7 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       languages.map((lang) => ({
          url: `${baseUrl}/${lang}/projects/${project.slug}`,
          lastModified: new Date(project.created_at),
-         changeFrequency: "weekly" as const,
+         changeFrequency: "monthly" as const,
          priority: 0.7,
       }))
    );

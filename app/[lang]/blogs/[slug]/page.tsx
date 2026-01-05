@@ -215,13 +215,14 @@ export default async function BlogPostPage({ params }: Props) {
          </header>
 
          {post.cover_image && (
-            <div className="relative w-full max-w-4xl mx-auto aspect-video object-cover p-4 mb-8 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-800">
+            <div className="relative w-[95%] max-w-4xl mx-auto aspect-video object-cover p-4 mb-8 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-800">
                <Image
                   src={post.cover_image}
                   alt={post.title}
                   fill
                   className="object-cover"
                   priority
+                  fetchPriority="high"
                />
             </div>
          )}

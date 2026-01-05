@@ -9,6 +9,44 @@
    font-family: inherit;
 }
 
+@layer base {
+   html {
+      font-family: var(--font-vazirmatn), system-ui, -apple-system,
+         BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+   }
+
+   body {
+      font-synthesis: none;
+   }
+}
+
+@layer base {
+   html[lang="fa-IR"] {
+      --numeric-style: "ss01", "ss02";
+   }
+
+   html[lang="en"] {
+      --numeric-style: normal;
+   }
+}
+
+@layer base {
+   html {
+      font-feature-settings: var(--numeric-style);
+   }
+}
+
+@layer base {
+   html[lang="fa-IR"] {
+      font-feature-settings: "ss01", "ss02", "lnum" 0, "tnum" 0;
+      font-variant-numeric: normal;
+   }
+}
+
 body {
    overflow-x: hidden;
    padding: 0;
