@@ -1,6 +1,4 @@
-// components/Particle.ts
-
-type ParticleConfig = {
+export type ParticleConfig = {
    maxSpeed: number;
    radius: [number, number];
    mouseInfluence: number;
@@ -47,20 +45,18 @@ export class Particle {
       if (mx !== null && my !== null) {
          const dx = this.x - mx;
          const dy = this.y - my;
-         const d2 = dx * dx + dy * dy; // Optimized: Distance Squared
+         const d2 = dx * dx + dy * dy;
          const r = this.config.mouseInfluence * DPR;
          const r2 = r * r;
 
-         // Check against squared radius to avoid Math.sqrt in most cases
          if (d2 < r2) {
-            const d = Math.sqrt(d2) || 0.001; // Only calc sqrt if needed
+            const d = Math.sqrt(d2) || 0.001;
             const force = (this.config.repelStrength * (1 - d / r)) / d;
             this.vx += dx * force;
             this.vy += dy * force;
          }
       }
 
-      // Simple speed limiting without hypot if possible, but hypot is ok for single particle
       const sp = Math.hypot(this.vx, this.vy);
       if (sp > this.config.maxSpeed) {
          const ratio = this.config.maxSpeed / sp;
@@ -71,7 +67,6 @@ export class Particle {
       this.x += this.vx * DPR;
       this.y += this.vy * DPR;
 
-      // Wrap around screen
       if (this.x < -50) this.x = W + 50;
       else if (this.x > W + 50) this.x = -50;
 
@@ -81,8 +76,6 @@ export class Particle {
 
    draw(color: string) {
       this.ctx.beginPath();
-      // Optimization: drawing squares is faster than circles (arc)
-      // but circles look better. Keeping arc but optimizing context calls in parent.
       this.ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
       this.ctx.fillStyle = color;
       this.ctx.fill();

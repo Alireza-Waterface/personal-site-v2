@@ -1,34 +1,98 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { Particle } from "./Particle";
+import { useEffect, useRef } from "react";
+import { Particle, type ParticleConfig } from "./Particle";
+
+type Bounds = {
+   W: number;
+   H: number;
+   DPR: number;
+};
+
+type ThemePalette = {
+   particle: string;
+   linkRGB: string;
+   linkAlpha: number;
+   glow: string;
+   maxSpeed: number;
+   radius: [number, number];
+   mouseInfluence: number;
+   repelStrength: number;
+   linkDistance: number;
+};
 
 export default function ParticleBackground() {
    const canvasRef = useRef<HTMLCanvasElement | null>(null);
    const rafRef = useRef<number | null>(null);
-   const [isDark, setIsDark] = useState(false);
+   const isRunningRef = useRef(false);
+
+   const themeRef = useRef<ThemePalette>({
+      particle: "",
+      linkRGB: "",
+      linkAlpha: 0,
+      glow: "",
+      maxSpeed: 0,
+      radius: [1, 2],
+      mouseInfluence: 0,
+      repelStrength: 0,
+      linkDistance: 0,
+   });
 
    useEffect(() => {
-      const match = window.matchMedia("(prefers-color-scheme: dark)");
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setIsDark(match.matches);
+      const root = document.documentElement;
 
-      const listener = (e: MediaQueryListEvent) => setIsDark(e.matches);
-      match.addEventListener("change", listener);
-      return () => match.removeEventListener("change", listener);
+      const applyTheme = () => {
+         const isDark = root.classList.contains("dark");
+
+         themeRef.current = isDark
+            ? {
+                 particle: "rgba(56,189,248,0.85)",
+                 linkRGB: "56,189,248",
+                 linkAlpha: 0.22,
+                 glow: "rgba(56,189,248,0.35)",
+                 maxSpeed: 0.6,
+                 radius: [1.2, 2.4],
+                 mouseInfluence: 130,
+                 repelStrength: 0.4,
+                 linkDistance: 110,
+              }
+            : {
+                 particle: "rgba(37,99,235,0.55)",
+                 linkRGB: "37,99,235",
+                 linkAlpha: 0.12,
+                 glow: "transparent",
+                 maxSpeed: 0.45,
+                 radius: [1, 2],
+                 mouseInfluence: 90,
+                 repelStrength: 0.28,
+                 linkDistance: 90,
+              };
+      };
+
+      applyTheme();
+
+      const observer = new MutationObserver(applyTheme);
+      observer.observe(root, {
+         attributes: true,
+         attributeFilter: ["class"],
+      });
+
+      return () => observer.disconnect();
    }, []);
 
    useEffect(() => {
       const canvas = canvasRef.current;
       if (!canvas) return;
-      const ctx = canvas.getContext("2d", { alpha: false });
+
+      const ctx = canvas.getContext("2d");
       if (!ctx) return;
 
       let DPR = Math.min(2, window.devicePixelRatio || 1);
-      let W = 0,
-         H = 0;
+      let W = 0;
+      let H = 0;
 
-      const getBounds = () => ({ W, H, DPR });
+      const bounds = (): Bounds => ({ W, H, DPR });
+
       const particles: Particle[] = [];
       const mouse = { x: null as number | null, y: null as number | null };
 
@@ -40,91 +104,133 @@ export default function ParticleBackground() {
          canvas.style.height = "100%";
       };
 
-      const computeParticles = () => {
-         const area = (W * H) / (DPR * DPR);
+      const initParticles = () => {
+         const area = (W * H) / DPR ** 2;
+         const isMobile = window.matchMedia("(pointer: coarse)").matches;
+
+         const density = isMobile ? 26000 : 22000;
+         const maxCount = isMobile ? 36 : 56;
+         const minCount = isMobile ? 12 : 16;
+
          const target = Math.min(
-            100,
-            Math.max(30, Math.round(0.08 * (area / 10000)))
+            maxCount,
+            Math.max(minCount, Math.round(area / density))
          );
 
-         if (particles.length < target) {
-            while (particles.length < target) {
-               particles.push(
-                  new Particle(
-                     ctx,
-                     {
-                        maxSpeed: 0.6,
-                        radius: [1, 2.2],
-                        mouseInfluence: 110,
-                        repelStrength: 0.35,
-                     },
-                     getBounds
-                  )
-               );
-            }
-         } else if (particles.length > target) {
-            particles.length = target;
+         const cfg: ParticleConfig = {
+            maxSpeed: themeRef.current.maxSpeed,
+            radius: themeRef.current.radius,
+            mouseInfluence: themeRef.current.mouseInfluence,
+            repelStrength: themeRef.current.repelStrength,
+         };
+
+         while (particles.length < target) {
+            particles.push(new Particle(ctx, cfg, bounds));
          }
+
+         particles.length = target;
       };
 
       const drawLinks = () => {
-         const threshold = 110 * DPR;
+         const { linkRGB, linkAlpha, linkDistance } = themeRef.current;
+
+         const threshold = linkDistance * DPR;
          const thresholdSq = threshold * threshold;
 
          ctx.lineWidth = DPR;
 
-         const baseColor = isDark ? "0, 0, 255" : "59, 130, 246";
-
          for (let i = 0; i < particles.length; i++) {
+            const a = particles[i];
+
             for (let j = i + 1; j < particles.length; j++) {
-               const a = particles[i];
                const b = particles[j];
 
                const dx = a.x - b.x;
                const dy = a.y - b.y;
-               const distSq = dx * dx + dy * dy;
+               const d2 = dx * dx + dy * dy;
 
-               if (distSq < thresholdSq) {
-                  const dist = Math.sqrt(distSq);
-                  const alpha = 0.16 * (1 - dist / threshold);
+               if (d2 > thresholdSq) continue;
 
-                  ctx.beginPath();
-                  ctx.strokeStyle = `rgba(${baseColor}, ${alpha})`;
-                  ctx.moveTo(a.x, a.y);
-                  ctx.lineTo(b.x, b.y);
-                  ctx.stroke();
-               }
+               const alpha = linkAlpha * (1 - d2 / thresholdSq);
+               ctx.strokeStyle = `rgba(${linkRGB},${alpha})`;
+
+               ctx.beginPath();
+               ctx.moveTo(a.x, a.y);
+               ctx.lineTo(b.x, b.y);
+               ctx.stroke();
             }
          }
       };
 
-      const loop = () => {
-         ctx.clearRect(0, 0, W, H);
+      const drawParticles = () => {
+         const { particle, glow } = themeRef.current;
 
-         for (const p of particles) p.step(mouse.x, mouse.y);
-
-         drawLinks();
-
-         ctx.fillStyle = isDark ? "#00f" : "#1d4ed8";
-         ctx.globalAlpha = 0.9;
+         ctx.shadowBlur = glow === "transparent" ? 0 : 6;
+         ctx.shadowColor = glow;
+         ctx.fillStyle = particle;
 
          for (const p of particles) {
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fill();
+            p.draw(particle);
          }
+
+         ctx.shadowBlur = 0;
+      };
+
+      const loop = () => {
+         if (!isRunningRef.current) return;
+
+         ctx.clearRect(0, 0, W, H);
+
+         for (const p of particles) {
+            p["config"].maxSpeed = themeRef.current.maxSpeed;
+            p["config"].mouseInfluence = themeRef.current.mouseInfluence;
+            p["config"].repelStrength = themeRef.current.repelStrength;
+            p.step(mouse.x, mouse.y);
+         }
+
+         drawLinks();
+         drawParticles();
 
          rafRef.current = requestAnimationFrame(loop);
       };
 
-      resize();
-      computeParticles();
-      loop();
+      const start = () => {
+         if (isRunningRef.current) return;
+         isRunningRef.current = true;
+         rafRef.current = requestAnimationFrame(loop);
+      };
 
-      window.addEventListener("resize", () => {
+      const stop = () => {
+         isRunningRef.current = false;
+         if (rafRef.current) {
+            cancelAnimationFrame(rafRef.current);
+            rafRef.current = null;
+         }
+      };
+
+      resize();
+      initParticles();
+
+      const header = canvas.closest("header") ?? canvas;
+
+      const io = new IntersectionObserver(
+         ([entry]) => {
+            entry.isIntersecting ? start() : stop();
+         },
+         { threshold: 0.25 }
+      );
+
+      io.observe(header);
+
+      /* ---------------------------------------------
+       * Events
+       * ------------------------------------------- */
+      const onResize = () => {
          resize();
-         computeParticles();
-      });
+         initParticles();
+      };
+
+      window.addEventListener("resize", onResize);
       window.addEventListener("mousemove", (e) => {
          mouse.x = e.clientX * DPR;
          mouse.y = e.clientY * DPR;
@@ -133,15 +239,21 @@ export default function ParticleBackground() {
          mouse.x = mouse.y = null;
       });
 
+      document.addEventListener("visibilitychange", () => {
+         document.hidden ? stop() : start();
+      });
+
       return () => {
-         if (rafRef.current) cancelAnimationFrame(rafRef.current);
+         stop();
+         io.disconnect();
+         window.removeEventListener("resize", onResize);
       };
-   }, [isDark]);
+   }, []);
 
    return (
       <canvas
          ref={canvasRef}
-         className="absolute w-full h-full z-0 pointer-events-none"
+         className="absolute inset-0 z-0 pointer-events-none"
          aria-hidden="true"
       />
    );
